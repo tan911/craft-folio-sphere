@@ -1,24 +1,26 @@
 {
-  "name": "portfolio-managment-app",
-  "private": true,
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
-  },
-  "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
-    "prettier": "^3.1.1",
-    "turbo": "latest"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "packageManager": "yarn@4.0.2",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+    "name": "portfolio-managment-app",
+    "private": true,
+    "scripts": {
+        "build": "turbo build",
+        "dev": "turbo dev",
+        "dashboard:dev": "turbo dev --filter dashboard",
+        "api:dev": "turbo dev --filter api",
+        "docs:dev": "turbo dev --filter docs",
+        "lint": "turbo lint",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    },
+    "devDependencies": {
+        "@repo/eslint-config": "*",
+        "@repo/typescript-config": "*",
+        "prettier": "^3.1.1",
+        "turbo": "latest"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ]
 }
