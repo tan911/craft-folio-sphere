@@ -1,5 +1,5 @@
 import { router, publicProcedure } from '../trpc'
-import { createUserSchema, userSchema } from '../util/zod.util'
+import { createUserSchema, userSchema } from '../lib/zod.lib'
 
 // JUST TO TEST TRPC IF THE ROUTE IS WORKING!
 export const userRouter = router({

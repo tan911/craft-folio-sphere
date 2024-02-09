@@ -6,15 +6,14 @@
     "scripts": {
         "dev": "nodemon src/server.ts",
         "build": "npx tsc",
-        "start": "nodemon dist/server.js",
-        "db:migrate:dev": "prisma migrate dev",
-        "db:studio": "prisma studio"
+        "start": "nodemon dist/server.js"
     },
     "keywords": [],
     "author": "Jovan Lanutan",
     "license": "ISC",
     "dependencies": {
         "@trpc/server": "^10.45.0",
+        "@repo/prisma": "*",
         "dotenv": "^16.4.1",
         "express": "^4.18.2",
         "express-async-errors": "^3.1.1",

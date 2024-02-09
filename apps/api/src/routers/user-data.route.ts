@@ -1,5 +1,5 @@
 import { router, publicProcedure } from '../trpc'
-import { prisma } from '../util/prisma.util'
+import { prisma } from '../lib/prisma.lib'
 
 // JUST TO TEST TRPC IF THE ROUTE IS WORKING!
 export const userDataRouter = router({

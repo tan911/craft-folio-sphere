@@ -1,6 +1,6 @@
 import app from './app'
 import env from './env'
-import { logger } from './util/logger.util'
+import { logger } from './lib/logger.lib'
 
 process.on('unhandledRejection', (error) => {
     logger.error(`Unhandled Rejection: ${error}`)
