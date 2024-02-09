@@ -1,0 +1,23 @@
+{
+    "name": "@repo/prisma",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "db:seed": "prisma db seed",
+        "db:migrate:dev": "prisma migrate dev",
+        "db:studio": "prisma studio"
+    },
+    "devDependencies": {
+        "prisma": "^5.9.1",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "@prisma/client": "^5.9.1"
+    },
+    "main": "./index.ts",
+    "types": "./index.ts",
+    "prisma": {
+        "seed": "ts-node --transpile-only seed.ts"
+    }
+}
