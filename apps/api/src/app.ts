@@ -1,20 +1,35 @@
+import 'express-async-errors'
 import express from 'express'
-import bodyParser from 'body-parser'
+import morgan from 'morgan'
+import { createExpressMiddleware } from '@trpc/server/adapters/express'
+
+import { createContext } from './trpc'
+import { appRouter } from './routers/_index'
+import { logger } from './util/logger.util'
+import env from './env'
 
 const app = express()
-const urlEncoded = bodyParser.urlencoded({ extended: false })
-const json = bodyParser.json()
 
 // MIDDLEWARE
-app.use(urlEncoded)
-app.use(json)
+app.use(
+    morgan(env.CFS_MORGAN_LOGGER, {
+        stream: {
+            write: (message: string) => {
+                logger.http(message.trim())
+            },
+        },
+    })
+)
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 // ROUTES
-app.use('/api/test', (req, res, next) => {
-    res.status(200).json({
-        status: '0k',
-        name: 'test',
+app.use(
+    '/trpc',
+    createExpressMiddleware({
+        router: appRouter,
+        createContext,
     })
-})
+)
 
 export default app

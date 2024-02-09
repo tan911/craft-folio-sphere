@@ -1,14 +1,17 @@
-import http from 'http'
-
 import app from './app'
+import env from './env'
+import { logger } from './util/logger.util'
 
-async function start() {
-    const server = http.createServer(app)
-    const port = 5000
+process.on('unhandledRejection', (error) => {
+    logger.error(`Unhandled Rejection: ${error}`)
+})
 
-    server.listen(port, () => {
-        console.log(`Server running on: \t\thttps://localhost/${port}`)
-    })
-}
+process.on('uncaughtException', (error) => {
+    logger.error(`Uncaught Exception: ${error}`)
+})
 
-start()
+const server = app.listen(env.CFS_PORT, () => {
+    logger.info(`Server running at \thttp://localhost:${env.CFS_PORT}`)
+})
+
+server.on('error', (err) => logger.error('AppServer failed to start from server.ts', err))
