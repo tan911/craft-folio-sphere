@@ -26,7 +26,7 @@ model User {
 model Profile {
   id        Int      @id @default(autoincrement())
   user      User     @relation(fields: [userId], references: [id])
-  userId    Int      @unique
+  userId    Int      @unique @map("user_id")
   firstName String   @db.VarChar(45)
   lastName  String   @db.VarChar(45)
   socials   Json
@@ -36,7 +36,7 @@ model Profile {
 model About {
   id          Int      @id @default(autoincrement())
   user        User     @relation(fields: [aboutId], references: [id])
-  aboutId     Int      @unique
+  aboutId     Int      @unique @map("about_id")
   title       String   @db.VarChar(50)
   description String   @db.VarChar(100)
   updateAt    DateTime @default(now()) @map("updated_at")
@@ -45,7 +45,7 @@ model About {
 model Work {
   id          Int      @id @default(autoincrement())
   user        User     @relation(fields: [workId], references: [id])
-  workId      Int      @unique
+  workId      Int      @unique @default(0) @map("work_id")
   position    String   @db.VarChar(20)
   companyName String   @map("name_of_company") @db.VarChar(20)
   location    String   @db.VarChar(20)
@@ -57,7 +57,7 @@ model Work {
 model Project {
   id          Int      @id @default(autoincrement())
   user        User     @relation(fields: [projectId], references: [id])
-  projectId   Int      @unique
+  projectId   Int      @unique @map("project_id")
   name        String   @db.VarChar(50)
   description String
   image       Json

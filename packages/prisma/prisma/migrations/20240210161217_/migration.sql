@@ -1,8 +1,8 @@
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
-    "username" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
+    "username" VARCHAR(45) NOT NULL,
+    "email" VARCHAR(50) NOT NULL,
     "password" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -12,9 +12,9 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Profile" (
     "id" SERIAL NOT NULL,
-    "userId" INTEGER NOT NULL,
-    "firstName" VARCHAR(10) NOT NULL,
-    "lastName" VARCHAR(10) NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "firstName" VARCHAR(45) NOT NULL,
+    "lastName" VARCHAR(45) NOT NULL,
     "socials" JSONB NOT NULL,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -24,8 +24,8 @@ CREATE TABLE "Profile" (
 -- CreateTable
 CREATE TABLE "About" (
     "id" SERIAL NOT NULL,
-    "aboutId" INTEGER NOT NULL,
-    "title" VARCHAR(30) NOT NULL,
+    "about_id" INTEGER NOT NULL,
+    "title" VARCHAR(50) NOT NULL,
     "description" VARCHAR(100) NOT NULL,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -35,7 +35,7 @@ CREATE TABLE "About" (
 -- CreateTable
 CREATE TABLE "Work" (
     "id" SERIAL NOT NULL,
-    "workId" INTEGER NOT NULL,
+    "work_id" INTEGER NOT NULL DEFAULT 0,
     "position" VARCHAR(20) NOT NULL,
     "name_of_company" VARCHAR(20) NOT NULL,
     "location" VARCHAR(20) NOT NULL,
@@ -49,10 +49,10 @@ CREATE TABLE "Work" (
 -- CreateTable
 CREATE TABLE "Project" (
     "id" SERIAL NOT NULL,
-    "projectId" INTEGER NOT NULL,
-    "name" VARCHAR(20) NOT NULL,
-    "description" VARCHAR(50) NOT NULL,
-    "image" TEXT NOT NULL,
+    "project_id" INTEGER NOT NULL,
+    "name" VARCHAR(50) NOT NULL,
+    "description" TEXT NOT NULL,
+    "image" JSONB NOT NULL,
     "teck_stack" JSONB NOT NULL,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -63,40 +63,43 @@ CREATE TABLE "Project" (
 CREATE TABLE "Contact" (
     "id" SERIAL NOT NULL,
     "contact_id" INTEGER NOT NULL,
-    "address" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "phone" TEXT NOT NULL,
+    "address" VARCHAR(45) NOT NULL,
+    "email" VARCHAR(50) NOT NULL,
+    "phone" VARCHAR(15) NOT NULL,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Contact_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Profile_userId_key" ON "Profile"("userId");
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "About_aboutId_key" ON "About"("aboutId");
+CREATE UNIQUE INDEX "Profile_user_id_key" ON "Profile"("user_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Work_workId_key" ON "Work"("workId");
+CREATE UNIQUE INDEX "About_about_id_key" ON "About"("about_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Project_projectId_key" ON "Project"("projectId");
+CREATE UNIQUE INDEX "Work_work_id_key" ON "Work"("work_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Project_project_id_key" ON "Project"("project_id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Contact_contact_id_key" ON "Contact"("contact_id");
 
 -- AddForeignKey
-ALTER TABLE "Profile" ADD CONSTRAINT "Profile_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Profile" ADD CONSTRAINT "Profile_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "About" ADD CONSTRAINT "About_aboutId_fkey" FOREIGN KEY ("aboutId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "About" ADD CONSTRAINT "About_about_id_fkey" FOREIGN KEY ("about_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Work" ADD CONSTRAINT "Work_workId_fkey" FOREIGN KEY ("workId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Work" ADD CONSTRAINT "Work_work_id_fkey" FOREIGN KEY ("work_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Project" ADD CONSTRAINT "Project_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Project" ADD CONSTRAINT "Project_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Contact" ADD CONSTRAINT "Contact_contact_id_fkey" FOREIGN KEY ("contact_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
