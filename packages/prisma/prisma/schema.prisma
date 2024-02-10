@@ -45,7 +45,7 @@ model About {
 model Work {
   id          Int      @id @default(autoincrement())
   user        User     @relation(fields: [workId], references: [id])
-  workId      Int      @unique @default(0) @map("work_id")
+  workId      Int      @unique @map("work_id")
   position    String   @db.VarChar(20)
   companyName String   @map("name_of_company") @db.VarChar(20)
   location    String   @db.VarChar(20)
