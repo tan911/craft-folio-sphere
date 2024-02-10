@@ -4,7 +4,9 @@
     "private": true,
     "scripts": {
         "db:seed": "prisma db seed",
+        "db:migrate:dev:create": "prisma migrate dev --create-only",
         "db:migrate:dev": "prisma migrate dev",
+        "db:reset": "prisma migrate reset",
         "db:studio": "prisma studio"
     },
     "devDependencies": {
