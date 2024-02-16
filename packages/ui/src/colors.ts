@@ -1,0 +1,53 @@
+export const COLORS = {
+    // Gray
+    'gray-25': '#FCFCFD',
+    'gray-50': '#F9FAFB',
+    'gray-100': '#F2F4F7',
+    'gray-200': '#EAECF0',
+    'gray-300': '#D0D5DD',
+    'gray-400': '#98A2B3',
+    'gray-500': '#667085',
+    'gray-600': '#475467',
+    'gray-700': '#344054',
+    'gray-800': '#1D2939',
+    'gray-900': '#101828',
+
+    // Green
+    'green-25': '#F6FEF9',
+    'green-50': '#ECFDF3',
+    'green-100': '#D1FADF',
+    'green-200': '#A6F4C5',
+    'green-300': '#6CE9A6',
+    'green-400': '#32D583',
+    'green-500': '#12B76A',
+    'green-600': '#039855',
+    'green-700': '#027A48',
+    'green-800': '#05603A',
+    'green-900': '#054F31',
+
+    // Red
+    'red-25': '#FFFBFA',
+    'red-50': '#FEF3F2',
+    'red-100': '#FEE4E2',
+    'red-200': '#FECDCA',
+    'red-300': '#FDA29B',
+    'red-400': '#F97066',
+    'red-500': '#F04438',
+    'red-600': '#D92D20',
+    'red-700': '#B42318',
+    'red-800': '#912018',
+    'red-900': '#7A271A',
+
+    // Blue
+    'blue-25': '#F5FAFF',
+    'blue-50': '#EFF8FF',
+    'blue-100': '#D1E9FF',
+    'blue-200': '#B2DDFF',
+    'blue-300': '#84CAFF',
+    'blue-400': '#53B1FD',
+    'blue-500': '#2E90FA',
+    'blue-600': '#1570EF',
+    'blue-700': '#175CD3',
+    'blue-800': '#1849A9',
+    'blue-900': '#194185',
+}
