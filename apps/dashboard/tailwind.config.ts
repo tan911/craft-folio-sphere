@@ -22,6 +22,8 @@ const config: Config = {
                 mobxl: ['1.25rem', { lineHeight: '1.875rem' }],
             },
             colors: {
+                'primary-25': COLORS['gray-25'],
+                'primary-50': COLORS['gray-50'],
                 'primary-100': COLORS['gray-100'],
                 'primary-200': COLORS['gray-200'],
                 'primary-300': COLORS['gray-300'],

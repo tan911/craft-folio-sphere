@@ -9,7 +9,7 @@ import {
     ProjectIcon,
     PaperIcon,
     QuestionIcon,
-} from '../../icons/outline'
+} from '../icons/outline'
 
 const navigation = [
     {
@@ -41,7 +41,7 @@ export default function Navigation() {
         <div>
             {navigation.map((nav) => {
                 return (
-                    <div className="py-2">
+                    <div className="py-2" key={nav.label}>
                         <div className="h-8 flex items-center">
                             <p className="text-mobsm text-primary-400 uppercase">{nav.label}</p>
                         </div>
