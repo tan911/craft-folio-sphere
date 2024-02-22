@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <main className="flex h-screen">
             <Sidebar />
-            <div className="flex-1 py-8 px-7">
+            <div className="flex-1 px-7 py-8">
                 <Header />
                 <div>{children}</div>
             </div>

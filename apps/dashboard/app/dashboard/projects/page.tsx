@@ -6,13 +6,13 @@ import { data } from '../../lib/placholder-data'
 export default function Page() {
     return (
         <>
-            <section className="h-44 flex justify-between items-center gap-10 my-2">
-                <div className="w-1/2 h-full border text-center">Cards 1</div>
-                <div className="w-1/2 h-full border text-center">Cards 2</div>
-                <div className="w-1/2 h-full border text-center">Cards 3</div>
+            <section className="my-2 flex h-44 items-center justify-between gap-10">
+                <div className="h-full w-1/2 border text-center">Cards 1</div>
+                <div className="h-full w-1/2 border text-center">Cards 2</div>
+                <div className="h-full w-1/2 border text-center">Cards 3</div>
             </section>
             <section>
-                <div className="h-11 flex justify-between items-center my-7">
+                <div className="my-7 flex h-11 items-center justify-between">
                     <div className="flex items-center gap-8">
                         <Switches />
                         <div>dropdowns</div>
@@ -25,19 +25,19 @@ export default function Page() {
                     />
                 </div>
                 <div>
-                    <table className="table-auto min-w-full h-full text-left font-normal border">
+                    <table className="h-full min-w-full table-auto border text-left font-normal">
                         <thead>
                             <tr>
-                                <th scope="col" className="h-11 text-mobsm font-normal">
+                                <th scope="col" className="text-mobsm h-11 font-normal">
                                     Project name
                                 </th>
-                                <th scope="col" className="h-11 text-mobsm font-normal">
+                                <th scope="col" className="text-mobsm h-11 font-normal">
                                     Status
                                 </th>
-                                <th scope="col" className="h-11 text-mobsm font-normal">
+                                <th scope="col" className="text-mobsm h-11 font-normal">
                                     About
                                 </th>
-                                <th scope="col" className="h-11 text-mobsm font-normal">
+                                <th scope="col" className="text-mobsm h-11 font-normal">
                                     Last update
                                 </th>
                             </tr>

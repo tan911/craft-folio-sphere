@@ -20,10 +20,10 @@ export default function Search(props: SearchProps) {
                     name={props.label}
                     id={props.id}
                     placeholder={props.placeholder}
-                    className="w-full py-2 pl-9 pr-3 h-full border border-primary-300 rounded-md"
+                    className="border-primary-300 h-full w-full rounded-md border py-2 pl-9 pr-3"
                 />
             </form>
-            <MagnifyingGlassIcon className="absolute w-5 top-0 bottom-0 translate-y-2/3 translate-x-1/2 text-primary-300" />
+            <MagnifyingGlassIcon className="text-primary-300 absolute bottom-0 top-0 w-5 translate-x-1/2 translate-y-2/3" />
         </div>
     )
 }

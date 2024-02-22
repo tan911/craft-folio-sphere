@@ -4,7 +4,7 @@ import Navigation from './navigation'
 
 export default function Sidebar() {
     return (
-        <aside className="w-[19.5rem] px-5 py-8 border border-r-primary-200">
+        <aside className="border-r-primary-200 w-[19.5rem] border px-5 py-8">
             <Logo />
             <Search
                 className="mt-8"

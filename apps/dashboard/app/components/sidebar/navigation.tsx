@@ -42,7 +42,7 @@ export default function Navigation() {
             {navigation.map((nav) => {
                 return (
                     <div className="py-2" key={nav.label}>
-                        <div className="h-8 flex items-center">
+                        <div className="flex h-8 items-center">
                             <p className="text-mobsm text-primary-400 uppercase">{nav.label}</p>
                         </div>
                         <div className="w-full">
@@ -53,16 +53,16 @@ export default function Navigation() {
                                         key={link.name}
                                         href={link.href}
                                         className={clsx(
-                                            'relative flex items-center gap-3 w-full h-10 py-2 px-3 rounded-md',
+                                            'relative flex h-10 w-full items-center gap-3 rounded-md px-3 py-2',
                                             {
-                                                'bg-primary-100 shadow-sm text-primary-500 font-semibold':
+                                                'bg-primary-100 text-primary-500 font-semibold shadow-sm':
                                                     pathName === link.href,
                                             }
                                         )}
                                     >
                                         <LinkIcon />
                                         {link.name === 'Docs' && (
-                                            <ArrowTopRightOnSquareIcon className="absolute w-5 right-[12px]" />
+                                            <ArrowTopRightOnSquareIcon className="absolute right-[12px] w-5" />
                                         )}
                                         <p>{link.name}</p>
                                     </Link>

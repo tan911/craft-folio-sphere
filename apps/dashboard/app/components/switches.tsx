@@ -15,16 +15,16 @@ export default function Switches() {
     return (
         <div>
             <form>
-                <fieldset className="flex bg-primary-100 rounded-lg p-1 shadow-sm border">
+                <fieldset className="bg-primary-100 flex rounded-lg border p-1 shadow-sm">
                     <legend className="sr-only">Switches</legend>
                     {switchValues.map((item) => {
                         const name = 'switches-' + item.toLowerCase()
                         return (
                             <div
                                 className={clsx(
-                                    'w-20 h-8 relative text-primary-400 opacity-75 rounded-[7px] cursor-pointer transition-all',
+                                    'text-primary-400 relative h-8 w-20 cursor-pointer rounded-[7px] opacity-75 transition-all',
                                     {
-                                        'bg-white drop-shadow-sm text-primary-900 font-semibold border':
+                                        'text-primary-900 border bg-white font-semibold drop-shadow-sm':
                                             item === switchActiveName,
                                     }
                                 )}
@@ -35,7 +35,7 @@ export default function Switches() {
                                 <label
                                     htmlFor={name}
                                     aria-labelledby={name}
-                                    className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] cursor-pointer"
+                                    className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] cursor-pointer"
                                 >
                                     {item}
                                 </label>
