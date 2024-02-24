@@ -2,6 +2,7 @@
     "trailingComma": "es5",
     "printWidth": 100,
     "tabWidth": 4,
+    "tailwindConfig": "./apps/dashboard/tailwind.config.ts",
     "semi": false,
     "singleQuote": true,
     "plugins": ["prettier-plugin-tailwindcss"]

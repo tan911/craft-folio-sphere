@@ -2,38 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-input::placeholder {
-    color: #98a2b3;
-    font-size: 0.92rem;
-    font-weight: 400;
-    opacity: 0.8;
-}
+@layer base {
+    input::placeholder {
+        color: #98a2b3;
+        font-size: 0.92rem;
+        font-weight: 400;
+        opacity: 0.8;
+    }
 
-// Fallback for older browsers
-input::-webkit-input-placeholder {
-    color: #98a2b3;
-    font-size: 0.92rem;
-    font-weight: 400;
-    opacity: 0.8;
-}
+    // Fallback for older browsers
+    input::-webkit-input-placeholder {
+        color: #98a2b3;
+        font-size: 0.92rem;
+        font-weight: 400;
+        opacity: 0.8;
+    }
 
-input::-moz-placeholder {
-    color: #98a2b3;
-    font-size: 0.92rem;
-    font-weight: 400;
-    opacity: 0.8;
-}
+    input::-moz-placeholder {
+        color: #98a2b3;
+        font-size: 0.92rem;
+        font-weight: 400;
+        opacity: 0.8;
+    }
 
-input:-ms-input-placeholder {
-    color: #98a2b3;
-    font-size: 0.92rem;
-    font-weight: 400;
-    opacity: 0.8;
-}
+    input:-ms-input-placeholder {
+        color: #98a2b3;
+        font-size: 0.92rem;
+        font-weight: 400;
+        opacity: 0.8;
+    }
 
-input::placeholder {
-    color: #98a2b3;
-    font-size: 0.92rem;
-    font-weight: 400;
-    opacity: 0.8;
+    input::placeholder {
+        color: #98a2b3;
+        font-size: 0.92rem;
+        font-weight: 400;
+        opacity: 0.8;
+    }
 }

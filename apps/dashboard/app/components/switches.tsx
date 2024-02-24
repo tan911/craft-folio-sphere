@@ -15,16 +15,16 @@ export default function Switches() {
     return (
         <div>
             <form>
-                <fieldset className="bg-primary-100 flex rounded-lg border p-1 shadow-sm">
+                <fieldset className="flex rounded-lg border bg-primary-100 p-1 shadow-sm">
                     <legend className="sr-only">Switches</legend>
                     {switchValues.map((item) => {
                         const name = 'switches-' + item.toLowerCase()
                         return (
                             <div
                                 className={clsx(
-                                    'text-primary-400 relative h-8 w-20 cursor-pointer rounded-[7px] opacity-75 transition-all',
+                                    'relative h-8 w-20 cursor-pointer rounded-[7px] text-primary-400 opacity-75 transition-all',
                                     {
-                                        'text-primary-900 border bg-white font-semibold drop-shadow-sm':
+                                        'border bg-white font-semibold text-primary-900 drop-shadow-sm':
                                             item === switchActiveName,
                                     }
                                 )}
