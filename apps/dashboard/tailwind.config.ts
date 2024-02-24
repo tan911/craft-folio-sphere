@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss'
-import { COLORS } from '@repo/ui/colors'
+import { COLORS } from '@repo/ui'
 const config: Config = {
     content: [
         './app/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -37,6 +37,7 @@ const config: Config = {
                 'success-50': COLORS['green-50'],
                 'success-500': COLORS['green-500'],
                 'success-600': COLORS['green-600'],
+                'success-700': COLORS['green-700'],
                 'error-25': COLORS['red-25'],
                 'error-50': COLORS['red-50'],
                 'error-100': COLORS['red-100'],
@@ -44,6 +45,7 @@ const config: Config = {
                 'error-400': COLORS['red-400'],
                 'error-500': COLORS['red-500'],
                 'error-600': COLORS['red-600'],
+                'error-700': COLORS['red-700'],
                 'error-800': COLORS['red-800'],
             },
         },

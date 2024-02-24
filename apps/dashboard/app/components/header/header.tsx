@@ -1,4 +1,5 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
+import { Button } from '@repo/ui'
 
 export default function Header() {
     return (
@@ -8,16 +9,9 @@ export default function Header() {
                 <p className="text-mobxs text-primary-500">Monday, Feb 14</p>
             </div>
             <div className="self-start">
-                <button
-                    className="flex items-center gap-2 rounded-md bg-brand-600 px-2.5 
-                            py-2 text-mobsm
-                            text-primary-100
-                            hover:bg-brand-700
-                        "
-                >
+                <Button mode="brand" isIcon={true} size="medium" text="New Project">
                     <PlusIcon className="w-5" />
-                    New Project
-                </button>
+                </Button>
             </div>
         </div>
     )

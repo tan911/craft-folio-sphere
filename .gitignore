@@ -36,3 +36,9 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+
+packages/ui/node_modules
+apps/dashboard/node_modules
+apps/api/node_modules
+apps/docs/node_modules
