@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { Icon } from '../icons/Icon'
 
 type SearchProps = {
     type: string
@@ -8,7 +8,7 @@ type SearchProps = {
     className?: string
 }
 
-export default function Search(props: SearchProps) {
+export function Search(props: SearchProps) {
     return (
         <div className={`relative h-11 ${props.className}`}>
             <form className="h-full">
@@ -23,7 +23,11 @@ export default function Search(props: SearchProps) {
                     className="h-full w-full rounded-md border border-primary-300 py-2 pl-9 pr-3"
                 />
             </form>
-            <MagnifyingGlassIcon className="absolute bottom-0 top-0 w-5 translate-x-1/2 translate-y-2/3 text-primary-300" />
+            <Icon
+                name="search"
+                size={24}
+                className="absolute bottom-0 top-0 left-2.5 w-5 translate-y-1/2 text-primary-300"
+            />
         </div>
     )
 }

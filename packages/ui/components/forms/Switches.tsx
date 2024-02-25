@@ -1,11 +1,10 @@
-'use client'
 import { useState } from 'react'
 import clsx from 'clsx'
 
 const switchValues = ['All', 'Active', 'Inactive'] as const
 type SwitchValue = (typeof switchValues)[number]
 
-export default function Switches() {
+export function Switches() {
     const [switchActiveName, setSwitchActiveName] = useState<SwitchValue>(switchValues[0])
 
     const handleSwitchBtn = (item: SwitchValue) => {

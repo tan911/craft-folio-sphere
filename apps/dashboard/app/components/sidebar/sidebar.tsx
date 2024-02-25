@@ -1,5 +1,5 @@
 import Logo from './logo/logo'
-import Search from '../search'
+import { Search } from '@repo/ui/forms'
 import Navigation from './navigation'
 
 export default function Sidebar() {

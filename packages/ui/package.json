@@ -4,7 +4,8 @@
     "private": true,
     "exports": {
         "./colors": "./styles/colors.ts",
-        "./buttons": "./components/buttons/Button.tsx"
+        "./buttons": "./components/buttons/index.ts",
+        "./forms": "./components/forms/index.ts"
     },
     "scripts": {
         "lint": "eslint . --max-warnings 0",
@@ -23,6 +24,7 @@
         "typescript": "^5.3.3"
     },
     "dependencies": {
-        "clsx": "^2.1.0"
+        "clsx": "^2.1.0",
+        "lucide-react": "^0.338.0"
     }
 }

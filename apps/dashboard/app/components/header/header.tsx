@@ -12,7 +12,7 @@ export default function Header() {
                 <p className="text-mobxs text-primary-500">Monday, Feb 14</p>
             </div>
             <div className="self-start">
-                <Button mode="brand" size="base" isIcon={true} type='button' onEvent={handle}>
+                <Button mode="brand" size="base" isIcon={true} type="button" onEvent={handle}>
                     <PlusIcon className="w-5" />
                     New Project
                 </Button>

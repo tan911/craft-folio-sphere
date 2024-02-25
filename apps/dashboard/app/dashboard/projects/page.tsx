@@ -1,10 +1,17 @@
-import Search from '@/components/search'
-import Switches from '@/components/switches'
+'use client'
+
+// import Search from '@/components/search'
+import{ Switches } from '@repo/ui/forms'
 import { EditIcon, DeleteIcon } from '@/components/icons/outline'
+import { Button } from '@repo/ui/buttons'
+import { Search } from '@repo/ui/forms'
 
 import { data } from '../../lib/placholder-data'
 
 export default function Page() {
+    const handlePreve = () => {
+        console.log('sdfsf')
+    }
     return (
         <>
             <section className="mb-8 mt-2 flex h-[34rem] flex-col gap-4 md:my-2 md:h-44 md:flex-row md:items-center md:justify-between md:gap-10">
@@ -81,14 +88,28 @@ export default function Page() {
                             ))}
                         </tbody>
                     </table>
-                    <div className="flex items-center justify-between border-t border-primary-200 p-4">
+                    <div className="flex flex-row items-center justify-between border-t border-primary-200 p-4">
                         <div className="flex gap-2 md:gap-4">
-                            <button className="pointer rounded-md border border-primary-300 px-1 py-1.5  font-medium text-primary-900 md:px-2.5 md:py-1.5">
+                            <Button
+                                mode="base"
+                                size="base"
+                                isIcon={false}
+                                type="button"
+                                onEvent={handlePreve}
+                                classes="md:px-2.5 md:py-1.5"
+                            >
                                 Previous
-                            </button>
-                            <button className="pointer rounded-md border border-primary-300 px-1 py-1.5 font-medium text-primary-900 md:px-2.5 md:py-1.5">
+                            </Button>
+                            <Button
+                                mode="base"
+                                size="base"
+                                isIcon={false}
+                                type="button"
+                                onEvent={handlePreve}
+                                classes="md:px-2.5 md:py-1.5"
+                            >
                                 Next
-                            </button>
+                            </Button>
                         </div>
                         <div className="md:mr-14">Pagination</div>
                     </div>
