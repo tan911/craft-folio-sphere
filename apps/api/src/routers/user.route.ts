@@ -1,27 +1,45 @@
 import { router, publicProcedure } from '../trpc'
 import { createUserSchema, userSchema } from '../lib/zod.lib'
+import { prisma } from '../lib/prisma.lib'
 
-// JUST TO TEST TRPC IF THE ROUTE IS WORKING!
 export const userRouter = router({
     signup: publicProcedure.input(createUserSchema).mutation(async (opts) => {
-        const { username, email, password } = await opts.input
-        return {
-            message: 'USER CREATED',
-            data: {
-                username,
-                email,
-                password,
+        const { input } = opts
+
+        const isUser = await prisma.user.findUnique({
+            where: {
+                email: input.email,
             },
+            select: {
+                email: true,
+                username: true,
+            },
+        })
+
+        if (!isUser) {
+            const user = await prisma.user.create({ data: input })
+            return {
+                message: 'User created!',
+                user,
+            }
+        } else {
+            return { message: 'This user already exist!' }
         }
     }),
+
     login: publicProcedure.input(userSchema).mutation(async (opts) => {
-        const { email, password } = await opts.input
+        const { input } = opts
+
+        // TODO:
+        // There are alot of things that should happen here.
+        // This is just to test user creation.
+        const isUser = await prisma.user.findUnique({
+            where: {
+                email: input.email,
+            },
+        })
         return {
             message: 'USER LOGINED',
-            name: {
-                email,
-                password,
-            },
         }
     }),
 })

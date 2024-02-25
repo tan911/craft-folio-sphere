@@ -25,7 +25,7 @@ app.use(express.json())
 
 // ROUTES
 app.use(
-    '/trpc',
+    '/cfs',
     createExpressMiddleware({
         router: appRouter,
         createContext,

@@ -1,6 +1,5 @@
 'use client'
 
-// import Search from '@/components/search'
 import{ Switches } from '@repo/ui/forms'
 import { EditIcon, DeleteIcon } from '@/components/icons/outline'
 import { Button } from '@repo/ui/buttons'

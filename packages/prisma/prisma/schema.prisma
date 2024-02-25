@@ -10,8 +10,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Status {
+  Active
+  Inactive
+}
+
 model User {
-  id        Int       @id @default(autoincrement())
+  id        String    @id @default(uuid())
   username  String    @db.VarChar(45)
   email     String    @unique @db.VarChar(50)
   password  String
@@ -26,7 +31,7 @@ model User {
 model Profile {
   id        Int      @id @default(autoincrement())
   user      User     @relation(fields: [userId], references: [id])
-  userId    Int      @unique @map("user_id")
+  userId    String   @unique @map("user_id")
   firstName String   @db.VarChar(45)
   lastName  String   @db.VarChar(45)
   socials   Json
@@ -36,7 +41,7 @@ model Profile {
 model About {
   id          Int      @id @default(autoincrement())
   user        User     @relation(fields: [aboutId], references: [id])
-  aboutId     Int      @unique @map("about_id")
+  aboutId     String   @unique @map("about_id")
   title       String   @db.VarChar(50)
   description String   @db.VarChar(100)
   updateAt    DateTime @default(now()) @map("updated_at")
@@ -45,7 +50,7 @@ model About {
 model Work {
   id          Int      @id @default(autoincrement())
   user        User     @relation(fields: [workId], references: [id])
-  workId      Int      @unique @map("work_id")
+  workId      String   @unique @map("work_id")
   position    String   @db.VarChar(20)
   companyName String   @map("name_of_company") @db.VarChar(20)
   location    String   @db.VarChar(20)
@@ -57,8 +62,9 @@ model Work {
 model Project {
   id          Int      @id @default(autoincrement())
   user        User     @relation(fields: [projectId], references: [id])
-  projectId   Int      @unique @map("project_id")
+  projectId   String   @unique @map("project_id")
   name        String   @db.VarChar(50)
+  status      Status   @default(Active)
   description String
   image       Json
   techStack   Json     @map("teck_stack")
@@ -68,7 +74,7 @@ model Project {
 model Contact {
   id        Int      @id @default(autoincrement())
   user      User     @relation(fields: [contactId], references: [id])
-  contactId Int      @unique @map("contact_id")
+  contactId String   @unique @map("contact_id")
   address   String   @db.VarChar(45)
   email     String   @db.VarChar(50)
   phone     String   @db.VarChar(15)
