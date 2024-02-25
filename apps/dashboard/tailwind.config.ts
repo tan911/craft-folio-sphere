@@ -1,10 +1,11 @@
 import type { Config } from 'tailwindcss'
-import { COLORS } from '@repo/ui'
+import { COLORS } from '@repo/ui/colors'
 const config: Config = {
     content: [
         './app/pages/**/*.{js,ts,jsx,tsx,mdx}',
         './app/components/**/*.{js,ts,jsx,tsx,mdx}',
         './app/**/*.{js,ts,jsx,tsx,mdx}',
+        '../../packages/ui/**/*.{js,tsx,ts}',
     ],
     theme: {
         extend: {
