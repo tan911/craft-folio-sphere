@@ -1,11 +1,10 @@
 'use client'
 
-import '@/styles/globals.scss'
 import Sidebar from '@/components/sidebar/sidebar'
 import Header from '@/components/header/header'
 import { MenuIcon } from '@/components/icons/outline'
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
         <main className="flex h-screen flex-col md:flex-row">
             <div className="relative">

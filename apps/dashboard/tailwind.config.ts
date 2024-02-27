@@ -30,6 +30,7 @@ const config: Config = {
                 'primary-300': COLORS['gray-300'],
                 'primary-400': COLORS['gray-400'],
                 'primary-500': COLORS['gray-500'],
+                'primary-800': COLORS['gray-800'],
                 'primary-900': COLORS['gray-900'],
                 'brand-25': COLORS['blue-25'],
                 'brand-700': COLORS['blue-700'],

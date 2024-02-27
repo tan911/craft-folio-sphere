@@ -1,16 +1,12 @@
-'use client'
+'use server'
 
-import{ Switches } from '@repo/ui/forms'
-import { EditIcon, DeleteIcon } from '@/components/icons/outline'
-import { Button } from '@repo/ui/buttons'
+import { Switches } from '@repo/ui/forms'
 import { Search } from '@repo/ui/forms'
+import { EditIcon, DeleteIcon } from '@/components/icons/outline'
+import { data } from '@/lib/placholder-data'
+import Pagination from '@/components/pagination'
 
-import { data } from '../../lib/placholder-data'
-
-export default function Page() {
-    const handlePreve = () => {
-        console.log('sdfsf')
-    }
+export default async function Page() {
     return (
         <>
             <section className="mb-8 mt-2 flex h-[34rem] flex-col gap-4 md:my-2 md:h-44 md:flex-row md:items-center md:justify-between md:gap-10">
@@ -87,31 +83,7 @@ export default function Page() {
                             ))}
                         </tbody>
                     </table>
-                    <div className="flex flex-row items-center justify-between border-t border-primary-200 p-4">
-                        <div className="flex gap-2 md:gap-4">
-                            <Button
-                                mode="base"
-                                size="base"
-                                isIcon={false}
-                                type="button"
-                                onEvent={handlePreve}
-                                classes="md:px-2.5 md:py-1.5"
-                            >
-                                Previous
-                            </Button>
-                            <Button
-                                mode="base"
-                                size="base"
-                                isIcon={false}
-                                type="button"
-                                onEvent={handlePreve}
-                                classes="md:px-2.5 md:py-1.5"
-                            >
-                                Next
-                            </Button>
-                        </div>
-                        <div className="md:mr-14">Pagination</div>
-                    </div>
+                    <Pagination />
                 </div>
             </section>
         </>

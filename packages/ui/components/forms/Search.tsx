@@ -1,3 +1,5 @@
+'use client'
+
 import { Icon } from '../icons/Icon'
 
 type SearchProps = {
@@ -26,7 +28,7 @@ export function Search(props: SearchProps) {
             <Icon
                 name="search"
                 size={24}
-                className="absolute bottom-0 top-0 left-2.5 w-5 translate-y-1/2 text-primary-300"
+                className="absolute bottom-0 left-2.5 top-0 w-5 translate-y-1/2 text-primary-300"
             />
         </div>
     )
