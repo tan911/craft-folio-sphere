@@ -12,9 +12,8 @@
     "author": "Jovan Lanutan",
     "license": "ISC",
     "dependencies": {
-        "@trpc/server": "^10.45.0",
         "@repo/prisma": "*",
-        "dotenv": "^16.4.1",
+        "@trpc/server": "^10.45.0",
         "express": "^4.18.2",
         "express-async-errors": "^3.1.1",
         "morgan": "^1.10.0",

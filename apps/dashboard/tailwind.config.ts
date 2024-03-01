@@ -44,6 +44,7 @@ const config: Config = {
                 'error-50': COLORS['red-50'],
                 'error-100': COLORS['red-100'],
                 'error-200': COLORS['red-200'],
+                'error-300': COLORS['red-300'],
                 'error-400': COLORS['red-400'],
                 'error-500': COLORS['red-500'],
                 'error-600': COLORS['red-600'],

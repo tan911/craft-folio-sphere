@@ -1,9 +1,12 @@
 {
     "$schema": "https://turbo.build/schema.json",
     "globalDependencies": ["**/.env.*local"],
+    "globalDotEnv": [".env", ".env.local"],
+    "globalEnv": ["AUTH_SECRET", "GITHUB_CLIENT_ID", "GITHUB_CLIENT_SECRET"],
     "pipeline": {
         "build": {
             "dependsOn": ["^build"],
+            "dotEnv": [".env.production.local", ".env.local", ".env.production", ".env"],
             "outputs": [".next/**", "!.next/cache/**"]
         },
         "deploy": {
@@ -13,8 +16,15 @@
             "dependsOn": ["^lint"]
         },
         "dev": {
+            "dotEnv": [".env.production.local", ".env.local", ".env.production", ".env"],
             "cache": false,
             "persistent": true
+        },
+        "db:migrate:dev": {
+            "cache": false
+        },
+        "db:studio": {
+            "cache": false
         }
     }
 }

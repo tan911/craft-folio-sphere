@@ -2,7 +2,7 @@
 
 import Sidebar from '@/components/sidebar/sidebar'
 import Header from '@/components/header/header'
-import { MenuIcon } from '@/components/icons/outline'
+import { Icon } from '@repo/ui/icons'
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -17,7 +17,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             aria-label="Menu button"
                             className="flex items-center justify-center rounded-md border border-primary-200 p-2"
                         >
-                            <MenuIcon />
+                            <Icon name="menu" size={25} />
                         </button>
                     </div>
                 </div>

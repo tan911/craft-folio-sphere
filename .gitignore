@@ -37,8 +37,9 @@ yarn-error.log*
 .DS_Store
 *.pem
 
-
+# Workpaces dependencies
 packages/ui/node_modules
+packages/prisma/node_modules
 apps/dashboard/node_modules
 apps/api/node_modules
 apps/docs/node_modules

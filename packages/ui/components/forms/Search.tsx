@@ -1,6 +1,6 @@
 'use client'
 
-import { Icon } from '../icons/Icon'
+import { Icon } from '../icons/index'
 
 type SearchProps = {
     type: string

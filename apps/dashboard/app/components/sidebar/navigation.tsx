@@ -1,36 +1,36 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
-import {
-    DashboardIcon,
-    WorkIcon,
-    AccountIcon,
-    ProjectIcon,
-    PaperIcon,
-    QuestionIcon,
-} from '../icons/outline'
+import { Icon } from '@repo/ui/icons'
 
 const navigation = [
     {
         label: '',
         route: [
-            { name: 'Dashboard', href: '/dashboard', icon: DashboardIcon },
-            { name: 'Account', href: '/dashboard/account', icon: AccountIcon },
+            { name: 'Dashboard', href: '/dashboard', icon: <Icon name="layout-grid" size={24} /> },
+            {
+                name: 'Account',
+                href: '/dashboard/account',
+                icon: <Icon name="user-cog" size={24} />,
+            },
         ],
     },
     {
         label: 'Portfolio',
         route: [
-            { name: 'Projects', href: '/dashboard/projects', icon: ProjectIcon },
-            { name: 'Works', href: '/dashboard/works', icon: WorkIcon },
+            {
+                name: 'Projects',
+                href: '/dashboard/projects',
+                icon: <Icon name="layers-3" size={24} />,
+            },
+            { name: 'Works', href: '/dashboard/works', icon: <Icon name="briefcase" size={24} /> },
         ],
     },
     {
         label: 'Support',
         route: [
-            { name: 'Docs', href: '/dashboard/docs', icon: PaperIcon },
-            { name: 'FAQ', href: '/dashboard/faq', icon: QuestionIcon },
+            { name: 'Docs', href: '/dashboard/docs', icon: <Icon name="file" size={24} /> },
+            { name: 'FAQ', href: '/dashboard/faq', icon: <Icon name="file-question" size={24} /> },
         ],
     },
 ]
@@ -48,7 +48,6 @@ export default function Navigation() {
                             </div>
                             <div className="w-full">
                                 {nav.route.map((link) => {
-                                    const LinkIcon = link.icon
                                     return (
                                         <Link
                                             key={link.name}
@@ -61,9 +60,12 @@ export default function Navigation() {
                                                 }
                                             )}
                                         >
-                                            <LinkIcon />
+                                            {link.icon}
                                             {link.name === 'Docs' && (
-                                                <ArrowTopRightOnSquareIcon className="absolute right-[12px] w-5" />
+                                                <Icon
+                                                    name="chevron-right"
+                                                    className="absolute right-[12px] w-5"
+                                                />
                                             )}
                                             <p>{link.name}</p>
                                         </Link>

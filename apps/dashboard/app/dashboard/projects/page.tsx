@@ -1,12 +1,10 @@
-'use server'
-
 import { Switches } from '@repo/ui/forms'
 import { Search } from '@repo/ui/forms'
-import { EditIcon, DeleteIcon } from '@/components/icons/outline'
+import { Icon } from '@repo/ui/icons'
 import { data } from '@/lib/placholder-data'
 import Pagination from '@/components/pagination'
 
-export default async function Page() {
+export default function Page() {
     return (
         <>
             <section className="mb-8 mt-2 flex h-[34rem] flex-col gap-4 md:my-2 md:h-44 md:flex-row md:items-center md:justify-between md:gap-10">
@@ -68,15 +66,15 @@ export default async function Page() {
                                     <td className="flex hidden h-[4.5rem] w-[116px] flex-row justify-between gap-2 p-4 md:flex">
                                         <button
                                             aria-label="Delete"
-                                            className="block rounded-md border border-transparent px-2 transition-all hover:border-error-600 hover:bg-error-25"
+                                            className="modify-btn block rounded-md border border-transparent px-2 transition-all hover:border-error-600"
                                         >
-                                            <DeleteIcon />
+                                            <Icon name="trash-2" size={24} className="trash-icon" />
                                         </button>
                                         <button
                                             aria-label="Edit"
-                                            className="block rounded-md border border-transparent px-2 transition-all hover:border-success-600 hover:bg-success-25"
+                                            className="modify-btn block rounded-md border border-transparent px-2 transition-all hover:border-success-600 hover:bg-success-25"
                                         >
-                                            <EditIcon />
+                                            <Icon name="pen" size={24} className="pen-icon" />
                                         </button>
                                     </td>
                                 </tr>

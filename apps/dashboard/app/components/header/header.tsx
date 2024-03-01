@@ -1,5 +1,5 @@
-import { PlusIcon } from '@heroicons/react/24/outline'
 import { Button } from '@repo/ui/buttons'
+import { Icon } from '@repo/ui/icons'
 
 export default function Header() {
     const handle = () => {
@@ -13,7 +13,7 @@ export default function Header() {
             </div>
             <div className="self-start">
                 <Button mode="brand" size="base" isIcon={true} type="button" onEvent={handle}>
-                    <PlusIcon className="w-5" />
+                    <Icon name="plus" size={24} className="w-5" />
                     New Project
                 </Button>
             </div>

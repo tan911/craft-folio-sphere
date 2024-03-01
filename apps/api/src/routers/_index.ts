@@ -1,6 +1,6 @@
 import { mergeRouters } from '../trpc'
 import { userRouter } from './user.route'
-import { userDataRouter } from './user-data.route'
+import { userDataRouter } from './project.route'
 
 export const appRouter = mergeRouters(userRouter, userDataRouter)
 

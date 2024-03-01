@@ -1,6 +1,7 @@
 'use server'
 
 import { redirect } from 'next/navigation'
+import * as auth from '@/auth'
 
 export async function authenticate(formData: FormData) {
     // Make sure users input is valid
@@ -12,4 +13,20 @@ export async function authenticate(formData: FormData) {
 
     // redirect the user to dashboard page
     redirect('/dashboard')
+}
+
+export async function signIn() {
+    try {
+        await auth.signIn('github')
+    } catch (error) {
+        return 'something went wrong'
+    }
+}
+
+export async function signOut() {
+    try {
+        await auth.signOut()
+    } catch (error) {
+        return 'something went wrong'
+    }
 }

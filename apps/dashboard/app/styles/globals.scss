@@ -38,4 +38,22 @@
         font-weight: 400;
         opacity: 0.8;
     }
+
+    input:focus {
+        outline: none;
+    }
+}
+
+@layer components {
+    .modify-btn {
+        &:hover {
+            .trash-icon {
+                stroke: #d92d20;
+            }
+
+            .pen-icon {
+                stroke: #039855;
+            }
+        }
+    }
 }

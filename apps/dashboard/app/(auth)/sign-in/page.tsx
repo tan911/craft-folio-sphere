@@ -1,43 +1,81 @@
-import Link from 'next/link'
-import { GithubIcon } from '@/components/icons/outline'
+'use client'
+
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+
+import * as actions from '@/lib/actions'
+import { auth } from '@/auth'
 import Title from '@/components/auth/title'
-import SignInForm from '@/components/auth/signInForm'
+import Wrapper from '@/components/auth/wrapper'
+import { userSchema } from '@/lib/zod'
 
 export default function SignInPage() {
+    const {
+        handleSubmit,
+        formState: { errors },
+    } = useForm<z.infer<typeof userSchema>>({
+        resolver: zodResolver(userSchema),
+        defaultValues: {
+            email: '',
+            password: '',
+        },
+    })
+
+    // for oauth
+    // const session = await auth()
+
     return (
-        <div className="flex w-full flex-col justify-center md:w-[330px] lg:w-[380px]">
-            <Title title="Welcom back" message="Sign in to your account" />
-            <div className="flex flex-col gap-5">
+        <Wrapper
+            authType="signIn"
+            header={<Title headerLabel="Welcom back" messageLabel="Sign in to your account" />}
+        >
+            <form className="flex flex-col gap-4">
+                <div className="flex w-full flex-col gap-1">
+                    <label htmlFor="email" className="block text-mobsm">
+                        Email
+                    </label>
+                    <input
+                        type="text"
+                        id="email"
+                        placeholder="your@email.com"
+                        className="w-full rounded-md border border-primary-300 bg-primary-100 px-3 py-2"
+                        name="email"
+                        aria-describedby="email-error-message"
+                        required
+                    />
+                    <div id="email-error-message" aria-live="polite">
+                        <span className="text-mobxs font-bold text-error-500">
+                            {errors.email?.message}
+                        </span>
+                    </div>
+                </div>
+                <div className="flex w-full flex-col gap-1">
+                    <label htmlFor="password" className="block text-mobsm">
+                        Password
+                    </label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="password"
+                        className="w-full rounded-md border border-primary-300 bg-primary-100 px-3 py-2"
+                        aria-describedby="password-error-message"
+                        required
+                    />
+                    <div id="password-error-message" aria-live="polite">
+                        <span className="block text-mobxs font-bold text-error-500">
+                            {errors.password?.message}
+                        </span>
+                    </div>
+                </div>
                 <button
-                    className="flex w-full items-center justify-center rounded-md border bg-primary-200
-                            px-4 py-2
-                            text-mobmd shadow-sm transition-all hover:bg-primary-800 hover:text-white"
-                    type="button"
+                    type="submit"
+                    className="rounded-md bg-brand-600 px-4 py-2 text-white hover:bg-brand-700"
                 >
-                    <GithubIcon />
-                    <span className="ml-2">Continue with github</span>
+                    Sign In
                 </button>
-
-                <div className="relative flex justify-center">
-                    <div className="absolute inset-0 flex items-center">
-                        <div className="w-full border-t-[1px] border-primary-300"></div>
-                    </div>
-                    <div className="relative flex justify-center">
-                        <span className="bg-white px-2 text-mobsm">or</span>
-                    </div>
-                </div>
-
-                <div>
-                    <SignInForm />
-                </div>
-
-                <div className="text-center text-mobsm">
-                    <span>Don't have an account? </span>
-                    <Link href="/sign-up" className="font-medium">
-                        Sign up now
-                    </Link>
-                </div>
-            </div>
-        </div>
+            </form>
+        </Wrapper>
     )
 }

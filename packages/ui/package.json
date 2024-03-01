@@ -5,7 +5,8 @@
     "exports": {
         "./colors": "./styles/colors.ts",
         "./buttons": "./components/buttons/index.ts",
-        "./forms": "./components/forms/index.ts"
+        "./forms": "./components/forms/index.ts",
+        "./icons": "./components/icons/index.ts"
     },
     "scripts": {
         "lint": "eslint . --max-warnings 0",
@@ -25,6 +26,7 @@
     },
     "dependencies": {
         "clsx": "^2.1.0",
-        "lucide-react": "^0.338.0"
+        "lucide-react": "^0.338.0",
+        "next": "^14.1.0"
     }
 }

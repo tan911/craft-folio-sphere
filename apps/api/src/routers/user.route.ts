@@ -6,24 +6,25 @@ export const userRouter = router({
     signup: publicProcedure.input(createUserSchema).mutation(async (opts) => {
         const { input } = opts
 
-        const isUser = await prisma.user.findUnique({
+        const user = await prisma.user.findUnique({
             where: {
                 email: input.email,
             },
             select: {
+                id: true,
                 email: true,
                 username: true,
             },
         })
 
-        if (!isUser) {
+        if (!user) {
             const user = await prisma.user.create({ data: input })
             return {
                 message: 'User created!',
                 user,
             }
         } else {
-            return { message: 'This user already exist!' }
+            return { message: 'This user already exist!', user }
         }
     }),
 

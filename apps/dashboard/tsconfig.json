@@ -2,11 +2,12 @@
     "extends": "@repo/typescript-config/nextjs.json",
     "compilerOptions": {
         "strictNullChecks": true,
-        "baseUrl": "./app",
+        "baseUrl": "./",
         "paths": {
-            "@/styles/*": ["styles/*"],
-            "@/components/*": ["components/*"],
-            "@/lib/*": ["lib/*"],
+            "@/styles/*": ["app/styles/*"],
+            "@/components/*": ["app/components/*"],
+            "@/lib/*": ["app/lib/*"],
+            "@/auth": ["auth.ts"],
         },
         "plugins": [
             {
