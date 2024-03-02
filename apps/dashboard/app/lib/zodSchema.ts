@@ -37,7 +37,7 @@ export const userSchema = z
     .object({
         email: z
             .string()
-            .min(1, { message: 'Name is a required field' })
+            .min(1, { message: 'Email is a required field' })
             .email('Must be a valid email'),
         password: z.string().min(1, { message: 'Password is a required field' }),
     })
