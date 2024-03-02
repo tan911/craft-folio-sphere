@@ -1,12 +1,15 @@
 'use client'
 
+import { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import clsx from 'clsx'
 
 import * as actions from '@/lib/actions'
 import Title from '@/components/auth/title'
 import Wrapper from '@/components/auth/wrapper'
+import { IconProvider } from '@repo/ui/icons'
 import {
     createUserSchema,
     hasLowercase,
@@ -14,11 +17,10 @@ import {
     hasSpecialChars,
     hasUppercase,
     greaterThanSevenChars,
-} from '@/lib/zod'
-import { IconProvider } from '@repo/ui/icons'
-import clsx from 'clsx'
+} from '@/lib/zodSchema'
 
 export default function SignUpPage() {
+    const [isPasswordShown, setIsPasswordShown] = useState(false)
     const {
         handleSubmit,
         register,
@@ -27,6 +29,7 @@ export default function SignUpPage() {
         formState: { errors, isDirty },
     } = useForm<z.infer<typeof createUserSchema>>({
         resolver: zodResolver(createUserSchema),
+        mode: 'onTouched',
         defaultValues: {
             username: '',
             email: '',
@@ -37,8 +40,6 @@ export default function SignUpPage() {
     const handleFormSubmit: SubmitHandler<z.infer<typeof createUserSchema>> = (data: any) => {
         console.log(data)
     }
-
-    console.log(getFieldState('password').isTouched)
 
     return (
         <Wrapper
@@ -51,6 +52,7 @@ export default function SignUpPage() {
                         Username
                     </label>
                     <input
+                        {...register('username')}
                         type="text"
                         id="username"
                         placeholder="your name"
@@ -60,7 +62,6 @@ export default function SignUpPage() {
                             !errors.username?.message && 'border border-primary-300 bg-primary-100',
                             errors.username?.message && 'border border-error-700 bg-error-100'
                         )}
-                        {...register('username')}
                     />
                     <div id="username-error-message" aria-live="polite">
                         <span className="text-mobxs font-bold text-error-500">
@@ -90,12 +91,12 @@ export default function SignUpPage() {
                         </span>
                     </div>
                 </div>
-                <div className="flex w-full flex-col gap-1">
+                <div className="relative flex w-full flex-col gap-1">
                     <label htmlFor="password" className="block text-mobsm">
                         Password
                     </label>
                     <input
-                        type="password"
+                        type={isPasswordShown ? 'text' : 'password'}
                         id="password"
                         placeholder="password"
                         aria-describedby="password-error-message"
@@ -111,6 +112,17 @@ export default function SignUpPage() {
                             {errors.password?.message}
                         </span>
                     </div>
+                    <button
+                        type="button"
+                        className="absolute right-2 top-8 rounded-md border border-primary-300 bg-primary-200 px-3 py-1.5 transition-all hover:opacity-85"
+                        onClick={() => setIsPasswordShown(!isPasswordShown)}
+                    >
+                        <IconProvider
+                            name={isPasswordShown ? 'EyeOff' : 'Eye'}
+                            size={13}
+                            fill="none"
+                        />
+                    </button>
                     {getFieldState('password').isTouched && (
                         <div>
                             <ul>

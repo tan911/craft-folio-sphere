@@ -1,5 +1,4 @@
-import { Switches } from '@repo/ui/forms'
-import { Search } from '@repo/ui/forms'
+import { Switches, Search } from '@repo/ui/forms'
 import { Icon } from '@repo/ui/icons'
 import { data } from '@/lib/placholder-data'
 import Pagination from '@/components/pagination'
