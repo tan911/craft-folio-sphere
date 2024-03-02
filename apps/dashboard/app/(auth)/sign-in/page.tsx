@@ -5,13 +5,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import clsx from 'clsx'
 
-import * as actions from '@/lib/actions'
-import { auth } from '@/auth'
 import Title from '@/components/auth/title'
 import Wrapper from '@/components/auth/wrapper'
-import { userSchema } from '@/lib/zodSchema'
+import { userSchema } from '@repo/lib/index'
+import { trpc } from '@/trpc/trpc'
 
 export default function SignInPage() {
+    const createdUser = trpc.signIn.useMutation()
     const {
         handleSubmit,
         register,
@@ -25,12 +25,9 @@ export default function SignInPage() {
         },
     })
 
-    const handleFormSubmit: SubmitHandler<z.infer<typeof userSchema>> = (data: any) => {
-        console.log(data)
+    const handleFormSubmit: SubmitHandler<z.infer<typeof userSchema>> = (data) => {
+        createdUser.mutate(data)
     }
-
-    // for oauth
-    // const session = await auth()
 
     return (
         <Wrapper

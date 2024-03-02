@@ -1,5 +1,5 @@
 import { TRPCError } from '@trpc/server'
-import { createProjectSchema } from '../lib/zod.lib'
+import { createProjectSchema } from '@repo/lib/index'
 import { router, publicProcedure } from '../trpc'
 import { prisma } from '../lib/prisma.lib'
 

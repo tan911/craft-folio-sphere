@@ -8,6 +8,7 @@
             "@/components/*": ["app/components/*"],
             "@/lib/*": ["app/lib/*"],
             "@/auth": ["auth.ts"],
+            "@/trpc/*": ["app/_trpc/*"],
         },
         "plugins": [
             {

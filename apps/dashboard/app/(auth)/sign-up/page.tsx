@@ -6,7 +6,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import clsx from 'clsx'
 
-import * as actions from '@/lib/actions'
 import Title from '@/components/auth/title'
 import Wrapper from '@/components/auth/wrapper'
 import { IconProvider } from '@repo/ui/icons'
@@ -17,7 +16,7 @@ import {
     hasSpecialChars,
     hasUppercase,
     greaterThanSevenChars,
-} from '@/lib/zodSchema'
+} from '@repo/lib/index'
 
 export default function SignUpPage() {
     const [isPasswordShown, setIsPasswordShown] = useState(false)
@@ -37,7 +36,7 @@ export default function SignUpPage() {
         },
     })
 
-    const handleFormSubmit: SubmitHandler<z.infer<typeof createUserSchema>> = (data: any) => {
+    const handleFormSubmit: SubmitHandler<z.infer<typeof createUserSchema>> = (data) => {
         console.log(data)
     }
 

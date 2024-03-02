@@ -1,6 +1,7 @@
 import 'express-async-errors'
 import express from 'express'
 import morgan from 'morgan'
+import cors from 'cors'
 import { createExpressMiddleware } from '@trpc/server/adapters/express'
 
 import { createContext } from './trpc'
@@ -11,6 +12,7 @@ import env from './env'
 const app = express()
 
 // MIDDLEWARE
+app.use(cors())
 app.use(
     morgan(env.CFS_MORGAN_LOGGER, {
         stream: {
@@ -25,7 +27,7 @@ app.use(express.json())
 
 // ROUTES
 app.use(
-    '/cfs',
+    '/api',
     createExpressMiddleware({
         router: appRouter,
         createContext,
