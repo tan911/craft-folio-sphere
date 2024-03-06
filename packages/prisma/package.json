@@ -4,18 +4,20 @@
     "private": true,
     "scripts": {
         "db:seed": "prisma db seed",
-        "db:migrate:dev:create": "prisma migrate dev --create-only",
-        "db:migrate:dev": "prisma migrate dev",
-        "db:reset": "prisma migrate reset",
-        "db:studio": "prisma studio"
+        "db:migrate:create": "prisma migrate dev --create-only",
+        "db:migrate": "dotenv -e ../../.env -- prisma migrate dev",
+        "db:reset": "dotenv -e ../../.env -- prisma migrate reset",
+        "db:studio": "dotenv -e ../../.env -- prisma studio"
     },
     "devDependencies": {
+        "@faker-js/faker": "^8.4.1",
         "prisma": "^5.9.1",
         "ts-node": "^10.9.2",
         "typescript": "^5.3.3"
     },
     "dependencies": {
-        "@prisma/client": "^5.9.1"
+        "@prisma/client": "^5.9.1",
+        "dotenv-cli": "^7.3.0"
     },
     "main": "./index.ts",
     "types": "./index.ts",

@@ -1,7 +1,7 @@
 'use client'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { httpBatchLink } from '@trpc/client'
+import { httpBatchLink, loggerLink } from '@trpc/client'
 import { useState, type ReactNode } from 'react'
 import { trpc } from './trpc'
 
@@ -16,6 +16,7 @@ export default function Provider({ children }: { children: ReactNode }) {
     const [trpcClient] = useState(() =>
         trpc.createClient({
             links: [
+                loggerLink(),
                 httpBatchLink({
                     url: `${getBaseUrl()}/api`,
                     // You can pass any HTTP headers you wish here

@@ -7,8 +7,7 @@
         "dashboard:dev": "dotenv -- turbo dev --filter dashboard",
         "api:dev": "dotenv -- turbo dev --filter api",
         "docs:dev": "dotenv -- turbo dev --filter docs",
-        "db:migrate:dev": "dotenv -- turbo run db:migrate:dev",
-        "db:studio": "dotenv -- turbo run db:studio",
+        "db:studio": "dotenv -- turbo run db:studio --filter prisma",
         "lint": "turbo lint",
         "format": "prettier --write \"**/*.{ts,tsx,md}\""
     },

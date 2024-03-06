@@ -1,7 +1,6 @@
-import { TRPCError } from '@trpc/server'
-import { createProjectSchema } from '@repo/lib/index'
+import { createProjectSchema } from '@repo/lib/schema'
 import { router, publicProcedure } from '../trpc'
-import { prisma } from '../lib/prisma.lib'
+import { prisma } from '@repo/prisma'
 
 export const userDataRouter = router({
     createProjects: publicProcedure.input(createProjectSchema).mutation(async (opts) => {

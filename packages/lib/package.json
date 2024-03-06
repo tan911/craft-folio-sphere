@@ -3,14 +3,19 @@
     "version": "0.0.0",
     "private": true,
     "exports": {
-        "./index": "./index.ts"
+        "./index": "./index.ts",
+        "./data": "./data/index.ts",
+        "./schema": "./schema/index.ts",
+        "./token": "./token/index.ts"
     },
     "dependencies": {
-        "bcrypt": "^5.1.1",
+        "bcryptjs": "^2.4.3",
+        "uuid": "^9.0.1",
         "zod": "^3.22.4"
     },
     "devDependencies": {
-        "@types/bcrypt": "^5.0.2",
+        "@types/bcryptjs": "^2.4.6",
+        "@types/uuid": "^9.0.8",
         "typescript": "^5.3.3"
     }
 }

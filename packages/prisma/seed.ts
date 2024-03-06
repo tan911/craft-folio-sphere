@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { faker } from '@faker-js/faker'
 
 const prisma = new PrismaClient()
 
@@ -11,8 +12,8 @@ const socialsJson = [
 
 const imageJson = [
     {
-        name: 'helloImage',
-        link: 'https://unsplash.com/photos/black-smartphone-beside-pen-rNYCrcjUnOA',
+        name: faker.image.avatar(),
+        link: faker.image.url(),
     },
 ]
 const teckStack = [
@@ -32,30 +33,31 @@ const teckStack = [
 
 async function main() {
     await prisma.user.upsert({
-        where: { id: 1 },
+        where: { id: faker.string.uuid() },
         update: {},
         create: {
-            username: 'Jovantest',
-            email: 'jovan@test.com',
-            password: 'sss$helloPass',
+            name: faker.internet.userName(),
+            email: faker.internet.email(),
+            password: faker.internet.password(),
+            image: faker.image.avatarGitHub(),
             profile: {
                 create: {
-                    firstName: 'Jovan',
-                    lastName: 'Lanutan',
+                    firstName: faker.person.firstName(),
+                    lastName: faker.person.lastName(),
                     socials: socialsJson,
                 },
             },
             about: {
                 create: {
-                    title: 'my title',
-                    description: 'my random description would just test',
+                    title: 'HI!, my little bio.',
+                    description: faker.person.bio(),
                 },
             },
             work: {
                 create: {
-                    position: 'Accounting',
-                    companyName: 'X Technologies Inc.',
-                    location: 'New york',
+                    position: faker.person.jobTitle(),
+                    companyName: faker.company.name(),
+                    location: faker.location.country(),
                     startDate: new Date('2023-01-22'),
                     endDate: new Date('2024-01-01'),
                 },
@@ -70,9 +72,9 @@ async function main() {
             },
             contact: {
                 create: {
-                    address: 'New york',
-                    email: 'jovan@test.com',
-                    phone: '0232321',
+                    address: faker.location.country(),
+                    email: faker.internet.email(),
+                    phone: faker.phone.imei(),
                 },
             },
         },

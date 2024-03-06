@@ -9,6 +9,8 @@
             "@/lib/*": ["app/lib/*"],
             "@/auth": ["auth.ts"],
             "@/trpc/*": ["app/_trpc/*"],
+            "@/route": ["route.ts"],
+            "@/context/*": ["app/context/*"],
         },
         "plugins": [
             {

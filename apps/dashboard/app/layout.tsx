@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '@/styles/globals.scss'
 import Provider from './_trpc/provider'
+import { AppProviders } from '@/lib/providers'
 
 const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
@@ -13,7 +14,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en" className="text-neutral-500">
             <body className={`${inter.className} min-h-screen antialiased`}>
-                <Provider>{children}</Provider>
+                <AppProviders>
+                    <Provider>{children}</Provider>
+                </AppProviders>
             </body>
         </html>
     )

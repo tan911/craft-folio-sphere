@@ -37,6 +37,7 @@ const config: Config = {
                 'brand-600': COLORS['blue-600'],
                 'success-25': COLORS['green-25'],
                 'success-50': COLORS['green-50'],
+                'success-100': COLORS['green-100'],
                 'success-500': COLORS['green-500'],
                 'success-600': COLORS['green-600'],
                 'success-700': COLORS['green-700'],

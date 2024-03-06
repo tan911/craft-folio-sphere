@@ -1,51 +1,73 @@
 'use client'
 
 import { useState } from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import clsx from 'clsx'
+// import { useForm, SubmitHandler } from 'react-hook-form'
+// import { zodResolver } from '@hookform/resolvers/zod'
+// import { z } from '@repo/lib/index'
+// import clsx from 'clsx'
 
 import Title from '@/components/auth/title'
 import Wrapper from '@/components/auth/wrapper'
-import { IconProvider } from '@repo/ui/icons'
-import {
-    createUserSchema,
-    hasLowercase,
-    hasNumber,
-    hasSpecialChars,
-    hasUppercase,
-    greaterThanSevenChars,
-} from '@repo/lib/index'
+// import { IconProvider } from '@repo/ui/icons'
+// import { trpc } from '@/trpc/trpc'
+import { AuthResult, authUser } from '@repo/types'
+// import {
+//     createUserSchema,
+//     hasLowercase,
+//     hasNumber,
+//     hasSpecialChars,
+//     hasUppercase,
+//     greaterThanSevenChars,
+// } from '@repo/lib/schema'
+import SignUpForm from '@/components/auth/signUp-form'
 
 export default function SignUpPage() {
-    const [isPasswordShown, setIsPasswordShown] = useState(false)
-    const {
-        handleSubmit,
-        register,
-        watch,
-        getFieldState,
-        formState: { errors, isDirty },
-    } = useForm<z.infer<typeof createUserSchema>>({
-        resolver: zodResolver(createUserSchema),
-        mode: 'onTouched',
-        defaultValues: {
-            username: '',
-            email: '',
-            password: '',
-        },
+    // const [isPasswordShown, setIsPasswordShown] = useState(false)
+    const [message, setMessage] = useState<AuthResult>({
+        action: false,
+        message: 'Something went wrong!',
+        status: 'loading',
     })
+    // const { mutateAsync } = trpc.signUp.useMutation({
+    //     onSettled: (data, error) => {
+    //         const messages = error
+    //             ? { action: true, message: 'Something went wrong', isSuccess: false }
+    //             : { message: data?.message, isSuccess: data?.isSuccess }
+    //         setMessage(messages)
+    //     },
+    // })
+    // const {
+    //     handleSubmit,
+    //     register,
+    //     watch,
+    //     getFieldState,
+    //     formState: { errors, isDirty },
+    // } = useForm<z.infer<typeof createUserSchema>>({
+    //     resolver: zodResolver(createUserSchema),
+    //     mode: 'onTouched',
+    //     defaultValues: {
+    //         username: '',
+    //         email: '',
+    //         password: '',
+    //     },
+    // })
 
-    const handleFormSubmit: SubmitHandler<z.infer<typeof createUserSchema>> = (data) => {
-        console.log(data)
+    // const handleFormSubmit: SubmitHandler<z.infer<typeof createUserSchema>> = (data) => {
+    //     mutateAsync(data)
+    // }
+
+    const handleAuthResult = (message: AuthResult) => {
+        setMessage(message)
     }
 
     return (
         <Wrapper
-            authType="signUp"
+            auth={message}
+            authBtn={authUser.SIGNUP}
             header={<Title headerLabel="Get started" messageLabel="Create a new account" />}
         >
-            <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleFormSubmit)}>
+            <SignUpForm onAuth={handleAuthResult} />
+            {/* <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleFormSubmit)}>
                 <div className="flex w-full flex-col gap-1">
                     <label htmlFor="username" className="block text-mobsm">
                         Username
@@ -204,7 +226,7 @@ export default function SignUpPage() {
                 >
                     Sign Up
                 </button>
-            </form>
+            </form> */}
         </Wrapper>
     )
 }
