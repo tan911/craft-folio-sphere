@@ -1,5 +1,6 @@
 import { prisma } from '@repo/prisma'
 import { v4 as uuid } from 'uuid'
+import { setTokenExpiration } from './expiration.token'
 
 type VerificationToken = {
     email?: string
@@ -8,7 +9,7 @@ type VerificationToken = {
 
 export async function generateVerificationToken(email: string) {
     const token = uuid()
-    const tokenExpiration = new Date(new Date().getTime() + 15 * 60 * 1000) // 15 mins
+    const tokenExpiration = setTokenExpiration(15)
     const isUserhasExistingToken = await getVerificationToken({ email })
 
     if (isUserhasExistingToken) {

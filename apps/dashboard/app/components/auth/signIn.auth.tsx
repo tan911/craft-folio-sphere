@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import clsx from 'clsx'
 
-import { AuthContext } from '../../context/authContext'
+import { AuthContext } from '@/context/authContext'
 import { actionStatus, loggingStatus } from '@repo/types'
 import { userSchema } from '@repo/lib/schema'
 import { IconProvider } from '@repo/ui/icons'

@@ -10,7 +10,8 @@ import { prisma } from '@repo/prisma'
 import { bcrypt } from '@repo/lib/index'
 import { createAuthResult } from '@/lib/util'
 import { AuthType, actionStatus, loggingStatus } from '@repo/types'
-import { generateVerificationToken } from '@repo/lib/token'
+import { generateVerificationToken, getVerificationToken } from '@repo/lib/token'
+import { sendVerificationEmail, getTokenExpiration } from '@repo/lib/token'
 
 export async function signIn(authType: AuthType, data?: z.infer<typeof userSchema>) {
     try {
@@ -43,8 +44,12 @@ export async function signIn(authType: AuthType, data?: z.infer<typeof userSchem
             }
 
             if (!isUserExist.emailVerified) {
-                // TODO:resend email
-                // const verificationToken = await generateVerificationToken(isUserExist.email)
+                const verificationToken = await generateVerificationToken(isUserExist.email)
+
+                await sendVerificationEmail({
+                    email: verificationToken.email,
+                    token: verificationToken.token,
+                })
 
                 return createAuthResult({
                     action: true,
@@ -117,8 +122,12 @@ export async function signUp(data: z.infer<typeof createUserSchema>) {
             },
         })
 
-        // TODO:resend email
-        // const verificationToken = await generateVerificationToken(email)
+        const verificationToken = await generateVerificationToken(email)
+
+        await sendVerificationEmail({
+            email: verificationToken.email,
+            token: verificationToken.token,
+        })
 
         return createAuthResult({
             action: true,
@@ -126,8 +135,54 @@ export async function signUp(data: z.infer<typeof createUserSchema>) {
             status: loggingStatus.SUCCESS,
         })
     } catch (error) {
-        console.log(error)
+        console.log('SIGNING UP: ', error)
+        throw new Error('Some thing went wrong!')
     }
+}
+
+export async function verifyConfirmationToken(token: string) {
+    const isUserHasExistingToken = await getVerificationToken({ token })
+
+    if (!isUserHasExistingToken) {
+        return {
+            action: true,
+            message: actionStatus.TOKEN_DOESNT_EXIST,
+            status: loggingStatus.ERROR,
+        }
+    }
+
+    const tokenExpiry = getTokenExpiration(isUserHasExistingToken.expires)
+
+    if (tokenExpiry.isExpired) {
+        return createAuthResult({
+            action: true,
+            message: actionStatus.TOKEN_EXPIRED,
+            status: loggingStatus.ERROR,
+        })
+    }
+
+    const isUserExist = await getUserByEmail(isUserHasExistingToken.email)
+
+    if (!isUserExist) {
+        return createAuthResult({
+            action: true,
+            message: actionStatus.USER_DOESNT_EXIST,
+            status: loggingStatus.ERROR,
+        })
+    }
+
+    await prisma.user.update({
+        where: { id: isUserExist.id },
+        data: {
+            emailVerified: new Date(),
+        },
+    })
+
+    return createAuthResult({
+        action: true,
+        message: actionStatus.EMAIL_VERIFIED,
+        status: loggingStatus.SUCCESS,
+    })
 }
 
 export async function signOut() {

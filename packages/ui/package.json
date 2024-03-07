@@ -6,7 +6,8 @@
         "./colors": "./styles/colors.ts",
         "./buttons": "./components/buttons/index.ts",
         "./forms": "./components/forms/index.ts",
-        "./icons": "./components/icons/index.ts"
+        "./icons": "./components/icons/index.ts",
+        "./template": "./components/template/index.ts"
     },
     "scripts": {
         "lint": "eslint . --max-warnings 0",

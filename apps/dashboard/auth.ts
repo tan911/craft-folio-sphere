@@ -9,9 +9,7 @@ export const nextAuth = NextAuth({
     adapter: PrismaAdapter(prisma),
     session: { strategy: 'jwt' },
     callbacks: {
-        async signIn({ user, credentials, account }) {
-            console.log(user, credentials, account)
-
+        async signIn({ user, account }) {
             if (account?.provider === 'credentials') {
                 const isUserExist = await getUserByEmail(user.email as string)
 

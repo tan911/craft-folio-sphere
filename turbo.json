@@ -2,7 +2,13 @@
     "$schema": "https://turbo.build/schema.json",
     "globalDependencies": ["**/.env.*local"],
     "globalDotEnv": [".env", ".env.local"],
-    "globalEnv": ["AUTH_SECRET", "GITHUB_CLIENT_ID", "GITHUB_CLIENT_SECRET", "CFS_PORT"],
+    "globalEnv": [
+        "AUTH_SECRET",
+        "GITHUB_CLIENT_ID",
+        "GITHUB_CLIENT_SECRET",
+        "CFS_PORT",
+        "RESEND_API_KEY"
+    ],
     "pipeline": {
         "build": {
             "dependsOn": ["^build"],

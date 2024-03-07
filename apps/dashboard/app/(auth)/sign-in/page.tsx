@@ -1,7 +1,7 @@
-import Title from '@/components/auth/title'
-import Wrapper from '@/components/auth/wrapper'
+import Title from '@/components/auth/title.auth'
+import Wrapper from '@/components/auth/wrapper.auth'
 
-import SignInForm from '@/components/auth/signIn-form'
+import SignInForm from '@/components/auth/signIn.auth'
 
 export default function SignInPage() {
     return (

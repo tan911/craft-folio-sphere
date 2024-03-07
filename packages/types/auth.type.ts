@@ -14,6 +14,10 @@ export const actionStatus = {
     USER_EXISTS: 'Email already exists',
     USER_CREATED: 'Account created',
     EMAIL_SENT: 'Email verification sent',
+    USER_DOESNT_EXIST: 'Email of this user does not exists',
+    TOKEN_EXPIRED: 'Your confirmation link is no longer valid',
+    TOKEN_DOESNT_EXIST: 'Token for this user does not exists',
+    EMAIL_VERIFIED: 'Email verified',
 } as const
 
 export const authUser = {
