@@ -10,6 +10,8 @@ import { AuthContext } from '@/context/authContext'
 import { actionStatus, loggingStatus } from '@repo/types'
 import { userSchema } from '@repo/lib/schema'
 import { IconProvider } from '@repo/ui/icons'
+import { Button } from '@repo/ui/buttons'
+import { Input, InputField } from '@repo/ui/forms'
 import * as auth from '@/lib/actions'
 
 export default function SignInForm() {
@@ -60,11 +62,11 @@ export default function SignInForm() {
     }
     return (
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleFormSubmit)}>
-            <div className="flex w-full flex-col gap-1">
+            <InputField className="flex w-full flex-col gap-1">
                 <label htmlFor="email" className="block text-mobsm">
                     Email
                 </label>
-                <input
+                <Input
                     {...register('email')}
                     type="text"
                     id="email"
@@ -83,12 +85,12 @@ export default function SignInForm() {
                         {errors.email?.message}
                     </span>
                 </div>
-            </div>
-            <div className="flex w-full flex-col gap-1">
+            </InputField>
+            <InputField className="flex w-full flex-col gap-1">
                 <label htmlFor="password" className="block text-mobsm">
                     Password
                 </label>
-                <input
+                <Input
                     {...register('password')}
                     type="password"
                     id="password"
@@ -107,11 +109,13 @@ export default function SignInForm() {
                         {errors.password?.message}
                     </span>
                 </div>
-            </div>
-            <button
+            </InputField>
+            <Button
                 type="submit"
                 disabled={!isDirty || isSubmitting}
-                className="relative flex items-center justify-center gap-2 rounded-md bg-brand-600 px-4 py-2 text-white hover:bg-brand-700"
+                className="relative flex cursor-pointer items-center justify-center gap-2 rounded-md"
+                intent={'brand'}
+                size={'base'}
             >
                 {isSubmitting && (
                     <IconProvider
@@ -122,7 +126,7 @@ export default function SignInForm() {
                     />
                 )}
                 Sign In
-            </button>
+            </Button>
         </form>
     )
 }

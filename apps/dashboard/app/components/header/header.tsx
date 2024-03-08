@@ -1,5 +1,5 @@
 import { Button } from '@repo/ui/buttons'
-import { Icon } from '@repo/ui/icons'
+import { IconProvider } from '@repo/ui/icons'
 
 export default function Header() {
     const handle = () => {
@@ -12,8 +12,8 @@ export default function Header() {
                 <p className="text-mobxs text-primary-500">Monday, Feb 14</p>
             </div>
             <div className="self-start">
-                <Button mode="brand" size="base" isIcon={true} type="button" onEvent={handle}>
-                    <Icon name="plus" size={24} className="w-5" />
+                <Button className="flex gap-2 rounded-md" intent={'brand'} onClick={handle}>
+                    <IconProvider name="Plus" size={24} className="w-5" />
                     New Project
                 </Button>
             </div>

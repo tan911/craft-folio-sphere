@@ -4,15 +4,15 @@ import { useEffect, useCallback, useContext, useState } from 'react'
 import { useSearchParams, redirect } from 'next/navigation'
 import Link from 'next/link'
 
-import { AuthContext } from '@/context/authContext'
+import { Action, AuthContext } from '@/context/authContext'
 import { IconProvider } from '@repo/ui/icons'
 import { verifyConfirmationToken } from '@/lib/actions'
 
 export default function ConfirmationPage() {
-    const { handleActionStatus } = useContext(AuthContext)
+    const { handleActionStatus } = useContext<Action>(AuthContext)
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [message, setIsMessage] = useState<string>('')
-    const [isError, setIsError] = useState(false)
+    const [isError, setIsError] = useState<boolean>(false)
     const searchParams = useSearchParams()
 
     const token = searchParams.get('token')

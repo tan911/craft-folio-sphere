@@ -8,8 +8,10 @@ import clsx from 'clsx'
 
 import { AuthContext } from '@/context/authContext'
 import { actionStatus, loggingStatus } from '@repo/types'
-import * as auth from '@/lib/actions'
 import { IconProvider } from '@repo/ui/icons'
+import { Button } from '@repo/ui/buttons'
+import { Input, InputField } from '@repo/ui/forms'
+import * as auth from '@/lib/actions'
 import {
     createUserSchema,
     hasLowercase,
@@ -74,11 +76,11 @@ export default function SignUpForm() {
 
     return (
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleFormSubmit)}>
-            <div className="flex w-full flex-col gap-1">
+            <InputField className="flex w-full flex-col gap-1">
                 <label htmlFor="username" className="block text-mobsm">
                     Username
                 </label>
-                <input
+                <Input
                     {...register('username')}
                     type="text"
                     id="username"
@@ -95,12 +97,12 @@ export default function SignUpForm() {
                         {errors.username?.message}
                     </span>
                 </div>
-            </div>
-            <div className="flex w-full flex-col gap-1">
+            </InputField>
+            <InputField className="flex w-full flex-col gap-1">
                 <label htmlFor="email" className="block text-mobsm">
                     Email
                 </label>
-                <input
+                <Input
                     type="text"
                     id="email"
                     placeholder="your@email.com"
@@ -117,12 +119,12 @@ export default function SignUpForm() {
                         {errors.email?.message}
                     </span>
                 </div>
-            </div>
-            <div className="relative flex w-full flex-col gap-1">
+            </InputField>
+            <InputField className="relative flex w-full flex-col gap-1">
                 <label htmlFor="password" className="block text-mobsm">
                     Password
                 </label>
-                <input
+                <Input
                     type={isPasswordVisible ? 'text' : 'password'}
                     id="password"
                     placeholder="password"
@@ -139,17 +141,19 @@ export default function SignUpForm() {
                         {errors.password?.message}
                     </span>
                 </div>
-                <button
+                <Button
                     type="button"
-                    className="absolute right-2 top-8 rounded-md border border-primary-300 bg-primary-200 px-3 py-1.5 transition-all hover:opacity-85"
+                    className="absolute right-2 top-8 rounded-md border border-primary-400 bg-primary-300 px-3 py-1.5 transition-all hover:bg-primary-500"
+                    size={'small'}
                     onClick={() => setIsPasswordVisible(!isPasswordVisible)}
                 >
                     <IconProvider
                         name={isPasswordVisible ? 'EyeOff' : 'Eye'}
                         size={13}
                         fill="none"
+                        className="text-primary-400"
                     />
-                </button>
+                </Button>
                 {getFieldState('password').isTouched && (
                     <div>
                         <ul>
@@ -212,11 +216,13 @@ export default function SignUpForm() {
                         </ul>
                     </div>
                 )}
-            </div>
-            <button
+            </InputField>
+            <Button
                 type="submit"
                 disabled={!isDirty || isSubmitting}
-                className="relative rounded-md bg-brand-600 px-4 py-2 text-white hover:bg-brand-700"
+                className="relative cursor-pointer rounded-md"
+                intent={'brand'}
+                size={'base'}
             >
                 {isSubmitting && (
                     <IconProvider
@@ -227,7 +233,7 @@ export default function SignUpForm() {
                     />
                 )}
                 Sign Up
-            </button>
+            </Button>
         </form>
     )
 }

@@ -1,16 +1,14 @@
-import { type ReactNode, forwardRef } from 'react'
+import React, { type ReactNode, forwardRef } from 'react'
 
 type InputFieldProps = {
     className: string
     children: ReactNode
 }
 
-type InputProps = {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     id: string
     className: string
     name: string
-    type?: string
-    placeholder?: string
 }
 
 export const InputField = (props: InputFieldProps) => {
