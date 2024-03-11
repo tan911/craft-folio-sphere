@@ -15,7 +15,7 @@ export default function display({ IconName }: { IconName: string }) {
             <div>{/* <IconProvider name={name} size={18} /> */}</div>
             <div>
                 <h3>Message title</h3>
-                <p>Only tests sdf</p>
+                <p>Only tests sdf asda</p>
             </div>
             <div>Test</div>
         </div>
