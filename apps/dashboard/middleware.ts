@@ -4,6 +4,9 @@ import { DEFAULT_LOGIN_REDIRECT, apiRoutes, publicRoutes, authRoutes } from './r
 
 const { auth } = NextAuth(authConfig)
 
+// Typescript always yell about this portable annotations
+// Its quite annoying to see this but this also work as expected
+// possible cause: version ts compatibility in next-auth
 export default auth((req) => {
     const { nextUrl } = req
     const isLoggedIn = !!req.auth

@@ -21,6 +21,10 @@
         "lint": {
             "dependsOn": ["^lint"]
         },
+        "test": {},
+        "test:watch": {
+            "cache": false
+        },
         "dev": {
             "dotEnv": [".env.production.local", ".env.local", ".env.production", ".env"],
             "cache": false,

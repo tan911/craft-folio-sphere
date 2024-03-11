@@ -26,7 +26,7 @@ function ButtonToRedirect({ toButtonLabel, toButtonMessage, to }: ButtonLabelPro
         <div className="text-center text-mobsm">
             <span>{toButtonMessage}</span>
             <Link href={to} className="font-medium">
-                <u>{toButtonLabel}</u>
+                <span>{toButtonLabel}</span>
             </Link>
         </div>
     )
