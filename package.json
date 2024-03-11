@@ -36,7 +36,7 @@
     "lint-staged": {
         "(apps|packages)/**/*.{js,ts,jsx,tsx}": [
             "prettier --write",
-            "eslint"
+            "turbo run lint --"
         ],
         "*.json": [
             "prettier --write"
