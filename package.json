@@ -9,7 +9,7 @@
         "api:dev": "dotenv -- turbo dev --filter api",
         "docs:dev": "dotenv -- turbo dev --filter docs",
         "db:studio": "dotenv -- turbo run db:studio --filter prisma",
-        "lint": "turbo lint --",
+        "lint": "turbo lint -- --fix",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "test": "turbo run test",
         "test:watch": "turbo run test:watch",
@@ -36,7 +36,7 @@
     "lint-staged": {
         "(apps|packages)/**/*.{js,ts,jsx,tsx}": [
             "prettier --write",
-            "eslint --fix"
+            "eslint"
         ],
         "*.json": [
             "prettier --write"
