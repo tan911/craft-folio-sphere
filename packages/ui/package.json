@@ -10,7 +10,8 @@
         "./template": "./components/template/index.ts"
     },
     "scripts": {
-        "lint": "eslint . --max-warnings 0",
+        "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
+        "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
         "generate:component": "turbo gen react-component"
     },
     "devDependencies": {

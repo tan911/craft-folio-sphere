@@ -11,10 +11,8 @@ export function getTokenExpiration(tokenExpiration: Date) {
     }
 }
 
-export function setTokenExpiration(amount: number) {
-    //TODO: This is working but for some reason, I dont know if the time is set in 15 minutes and need test.
-    // There's a little bit of configuration to make this compatible in prisma date time.
+export function setTokenExpiration(amount: number): string {
     const now = moment()
-    const expirationTime = now.add(amount, 'minutes') // minutes
-    return expirationTime.utc().toISOString
+    const expirationTime = now.add(amount, 'minutes')
+    return expirationTime.utc().toISOString()
 }

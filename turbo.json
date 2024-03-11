@@ -19,7 +19,11 @@
             "dependsOn": ["build", "test", "lint"]
         },
         "lint": {
-            "dependsOn": ["^lint"]
+            "dependsOn": ["^lint"],
+            "cache": false
+        },
+        "lint:fix": {
+            "cache": false
         },
         "test": {},
         "test:watch": {

@@ -1,7 +1,6 @@
 {
     "name": "portfolio-managment-app",
     "private": true,
-    "type": "module",
     "scripts": {
         "build": "turbo build",
         "dev": "dotenv -- turbo dev",
@@ -9,7 +8,8 @@
         "api:dev": "dotenv -- turbo dev --filter api",
         "docs:dev": "dotenv -- turbo dev --filter docs",
         "db:studio": "dotenv -- turbo run db:studio --filter prisma",
-        "lint": "turbo lint -- --fix",
+        "lint": "turbo run lint",
+        "lint:fix": "turbo run lint:fix",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "test": "turbo run test",
         "test:watch": "turbo run test:watch",
