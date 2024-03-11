@@ -1,4 +1,4 @@
-import React, { type ReactNode, forwardRef } from 'react'
+import { type ReactNode, forwardRef } from 'react'
 
 type InputFieldProps = {
     className: string

@@ -1,23 +1,23 @@
-import { IconProvider } from '../icons'
+// import { IconProvider } from '../icons'
 
-type Values<T> = T[keyof T]
+// type Values<T> = T[keyof T]
 
-type DisplayIconType = {
-    success: 'success'
-    warning: 'warning'
-    error: 'error'
-    pending: 'pending'
-}
+// type DisplayIconType = {
+//     success: 'success'
+//     warning: 'warning'
+//     error: 'error'
+//     pending: 'pending'
+// }
 
-export default function display({ IconName }: { IconName: string }) {
-    return (
-        <div>
-            <div>{/* <IconProvider name={name} size={18} /> */}</div>
-            <div>
-                <h3>Message titleasd asdad</h3>
-                <p>Only tests </p>
-            </div>
-            <div>Test</div>
-        </div>
-    )
-}
+// export default function display({ IconName }: { IconName: string }) {
+//     return (
+//         <div>
+//             <div>{/* <IconProvider name={name} size={18} /> */}</div>
+//             <div>
+//                 <h3>Message title</h3>
+//                 <p>Only tests </p>
+//             </div>
+//             <div>Test</div>
+//         </div>
+//     )
+// }
