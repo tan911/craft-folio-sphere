@@ -97,8 +97,8 @@ model Project {
   name        String   @db.VarChar(50)
   status      Status   @default(Active)
   description String
-  image       Json
-  techStack   Json     @map("teck_stack")
+  image       String
+  techStack   String[] @map("teck_stack")
   updatedAt   DateTime @default(now()) @map("updated_at")
 }
 

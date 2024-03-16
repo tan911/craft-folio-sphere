@@ -3,6 +3,7 @@ import { type ReactNode, forwardRef } from 'react'
 type InputFieldProps = {
     className: string
     children: ReactNode
+    onClick?: () => void
 }
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {

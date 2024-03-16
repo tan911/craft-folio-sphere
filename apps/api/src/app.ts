@@ -27,7 +27,7 @@ app.use(express.json())
 
 // ROUTES
 app.use(
-    '/api',
+    '/api/auth',
     createExpressMiddleware({
         router: appRouter,
         createContext,

@@ -3,6 +3,7 @@
 import { type ReactNode, useState } from 'react'
 import { AuthContext } from '@/context/authContext'
 import { AuthResult } from '@repo/types'
+import { SessionProvider } from 'next-auth/react'
 
 export function AppProviders({ children }: { children: ReactNode }) {
     const [userActionStatus, setUserActionStatus] = useState<AuthResult | undefined>(undefined)
@@ -16,8 +17,12 @@ export function AppProviders({ children }: { children: ReactNode }) {
     }
 
     return (
-        <AuthContext.Provider value={{ handleActionStatus, handleActionReset, userActionStatus }}>
-            {children}
-        </AuthContext.Provider>
+        <SessionProvider>
+            <AuthContext.Provider
+                value={{ handleActionStatus, handleActionReset, userActionStatus }}
+            >
+                {children}
+            </AuthContext.Provider>
+        </SessionProvider>
     )
 }

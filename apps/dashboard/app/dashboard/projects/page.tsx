@@ -1,7 +1,7 @@
 import { Switches, Search } from '@repo/ui/forms'
 import { Icon } from '@repo/ui/icons'
 import { data } from '@/lib/placholder-data'
-import Pagination from '@/components/pagination'
+import { Pagination } from '@repo/ui/pagination'
 
 export default function Page() {
     return (
@@ -80,7 +80,9 @@ export default function Page() {
                             ))}
                         </tbody>
                     </table>
-                    <Pagination />
+                    <div className="mb-8 flex items-center justify-center md:my-2">
+                        <Pagination totalPages={5} />
+                    </div>
                 </div>
             </section>
         </>

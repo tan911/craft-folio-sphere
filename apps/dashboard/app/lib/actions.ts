@@ -10,8 +10,12 @@ import { prisma } from '@repo/prisma'
 import { bcrypt } from '@repo/lib/index'
 import { createAuthResult } from '@/lib/util'
 import { AuthType, actionStatus, loggingStatus } from '@repo/types'
-import { generateVerificationToken, getVerificationToken } from '@repo/lib/token'
-import { sendVerificationEmail, getTokenExpiration } from '@repo/lib/token'
+import {
+    generateVerificationToken,
+    getVerificationToken,
+    sendVerificationEmail,
+    getTokenExpiration,
+} from '@repo/lib/token'
 
 export async function signIn(authType: AuthType, data?: z.infer<typeof userSchema>) {
     try {

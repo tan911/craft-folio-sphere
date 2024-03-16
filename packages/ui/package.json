@@ -7,10 +7,12 @@
         "./buttons": "./components/buttons/index.ts",
         "./forms": "./components/forms/index.ts",
         "./icons": "./components/icons/index.ts",
-        "./template": "./components/template/index.ts"
+        "./template": "./components/template/index.ts",
+        "./pagination": "./components/pagination/index.ts",
+        "./modal": "./components/modal/index.ts"
     },
     "scripts": {
-        "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
+        "lint": "eslint --max-warnings=0 --config .eslintrc.js  --ext .ts,.js,.tsx,.jsx",
         "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
         "generate:component": "turbo gen react-component"
     },
@@ -27,6 +29,8 @@
         "typescript": "^5.3.3"
     },
     "dependencies": {
+        "@hookform/resolvers": "^3.3.4",
+        "@react-email/components": "0.0.15",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.0",
         "lucide-react": "^0.338.0",

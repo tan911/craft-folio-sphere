@@ -4,6 +4,8 @@
         "esModuleInterop": true,
         "baseUrl": "./src",
         "outDir": "./dist",
-        "forceConsistentCasingInFileNames": true,
+        "forceConsistentCasingInFileNames": true
     },
+    "include": ["./src/**/*.ts"],
+    "exclude": ["node_modules", "test/**/*.ts"]
 }

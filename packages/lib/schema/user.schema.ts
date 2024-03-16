@@ -45,16 +45,3 @@ export const userSchema = z
         email: true,
         password: true,
     })
-
-const VALUES = ['Active', 'Inactive'] as const
-
-export const createProjectSchema = z.object({
-    name: z
-        .string({ required_error: 'Name of the project is required' })
-        .min(1, { message: 'Must be 3 or more characters long' })
-        .max(45, { message: 'Must be 5 or fewer characters long' }),
-    description: z.string().min(15, { message: 'Add a little description of this project' }),
-    image: z.string(),
-    techStack: z.string(),
-    status: z.enum(VALUES),
-})

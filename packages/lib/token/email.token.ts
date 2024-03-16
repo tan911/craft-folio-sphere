@@ -4,7 +4,7 @@ import { Resend } from 'resend'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function sendVerificationEmail({ email, token }: { email: string; token: string }) {
-    const confirmationLink = `http://localhost:3000/confirm?token=${token}`
+    const confirmationLink = `${process.env.PUBLIC_URL}/confirm?token=${token}`
 
     try {
         await resend.emails.send({

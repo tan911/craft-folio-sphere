@@ -7,13 +7,13 @@ import authConfig from './auth.config'
 export const nextAuth = NextAuth({
     ...authConfig,
     adapter: PrismaAdapter(prisma),
-    session: { strategy: 'jwt' },
+    session: { strategy: 'jwt', maxAge: 864000 },
     callbacks: {
         async signIn({ user, account }) {
             if (account?.provider === 'credentials') {
                 const isUserExist = await getUserByEmail(user.email as string)
 
-                if (!isUserExist?.emailVerified) {
+                if (isUserExist && !isUserExist.emailVerified) {
                     return false
                 }
             }
