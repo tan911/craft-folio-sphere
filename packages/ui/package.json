@@ -12,7 +12,7 @@
         "./modal": "./components/modal/index.ts"
     },
     "scripts": {
-        "lint": "eslint --max-warnings=0 --config .eslintrc.js  --ext .ts,.js,.tsx,.jsx",
+        "lint": "eslint --max-warnings=0 --ext .ts,.js,.tsx,.jsx",
         "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
         "generate:component": "turbo gen react-component"
     },
