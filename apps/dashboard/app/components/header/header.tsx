@@ -7,15 +7,17 @@ import { IconProvider } from '@repo/ui/icons'
 import { CreateModal } from '@repo/ui/modal'
 import { createProjectSchema } from '@repo/lib/schema'
 import { z } from '@repo/lib/index'
+import { trpc } from '@/trpc/trpc'
 
 export default function Header() {
     const searchParams = useSearchParams()
     const pathName = usePathname()
+    const mutation = trpc.createProjects.useMutation()
 
     const isModalVisible = searchParams.get('modal')
 
     const handleFormSubmit = (data: z.infer<typeof createProjectSchema>) => {
-        console.log(data)
+        mutation.mutate(data)
     }
 
     return (

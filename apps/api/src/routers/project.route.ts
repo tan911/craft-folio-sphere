@@ -1,14 +1,15 @@
 import { createProjectSchema } from '@repo/lib/schema'
-import { router, publicProcedure } from '../trpc'
+import { router, protectedProcedure } from '../trpc'
+// import { prisma } from '@repo/prisma'
 
 export const userDataRouter = router({
-    createProjects: publicProcedure.input(createProjectSchema).mutation(async (opts) => {
+    createProjects: protectedProcedure.input(createProjectSchema).mutation(async (opts) => {
         const { input } = opts
         console.log(input)
-        // await prisma.project.create({ data: input })
+        // await prisma.project.create({data: input})
     }),
 
-    getProjects: publicProcedure.query(async () => {
+    getProjects: protectedProcedure.query(async () => {
         return { message: 'hello' }
     }),
 })

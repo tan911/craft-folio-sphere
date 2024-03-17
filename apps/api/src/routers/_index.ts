@@ -1,16 +1,6 @@
-import { router, publicProcedure } from '../trpc'
+import { mergeRouters } from '../trpc'
+import { userDataRouter } from './project.route'
 
-export const appRouter = router({
-    user: publicProcedure
-        .use(async ({ ctx, next }) => {
-            return next({
-                ctx: {
-                    ...ctx,
-                    user: 'Helo user',
-                },
-            })
-        })
-        .query(({ ctx }) => ctx.user),
-})
+export const appRouter = mergeRouters(userDataRouter)
 
 export type AppRouter = typeof appRouter

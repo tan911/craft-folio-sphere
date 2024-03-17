@@ -1,6 +1,6 @@
 'use server'
 
-import { AuthError } from 'next-auth'
+import { AuthError, type Session, User } from 'next-auth'
 import { nextAuth as auth } from '@/auth'
 import { userSchema, createUserSchema } from '@repo/lib/schema'
 import { getUserByEmail } from '@repo/lib/data'
@@ -10,6 +10,7 @@ import { prisma } from '@repo/prisma'
 import { bcrypt } from '@repo/lib/index'
 import { createAuthResult } from '@/lib/util'
 import { AuthType, actionStatus, loggingStatus } from '@repo/types'
+import { getJWTToken } from '@repo/lib/token'
 import {
     generateVerificationToken,
     getVerificationToken,
@@ -187,6 +188,12 @@ export async function verifyConfirmationToken(token: string) {
         message: actionStatus.EMAIL_VERIFIED,
         status: loggingStatus.SUCCESS,
     })
+}
+
+export async function getAuthToken(dataSession: Session) {
+    const user = dataSession.user as User
+    const token = await getJWTToken(user)
+    return token
 }
 
 export async function signOut() {
