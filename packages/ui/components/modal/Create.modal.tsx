@@ -17,9 +17,10 @@ type SwitchValue = (typeof switchValues)[number]
 
 export function CreateModal({
     onFormSubmit,
+    isLoading,
 }: {
-    // eslint-disable-next-line no-unused-vars
     onFormSubmit: (data: z.infer<typeof createProjectSchema>) => void
+    isLoading: boolean
 }) {
     const [switchActiveName, setSwitchActiveName] = useState<SwitchValue>(switchValues[0])
     const router = useRouter()
@@ -191,8 +192,9 @@ export function CreateModal({
                                     size={'base'}
                                     intent={'brand'}
                                     className="rounded-md px-[1.1em] py-[.625em]"
+                                    disabled={isLoading}
                                 >
-                                    Create
+                                    {isLoading ? 'Saving...' : 'Create'}
                                 </Button>
                                 <Button
                                     onClick={handleCloseModal}
@@ -200,6 +202,7 @@ export function CreateModal({
                                     size={'base'}
                                     intent={'error'}
                                     className="rounded-md px-[1.1em] py-[.625em]"
+                                    disabled={isLoading}
                                 >
                                     Discard
                                 </Button>

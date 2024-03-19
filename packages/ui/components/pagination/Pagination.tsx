@@ -2,17 +2,32 @@
 
 import clsx from 'clsx'
 import Link from 'next/link'
-
+import { usePathname, useSearchParams } from 'next/navigation'
 import { IconProvider } from '../icons'
 
 export function Pagination({ totalPages }: { totalPages: number }) {
-    const currentPage = 1
+    if (!totalPages) return
+
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+    const currentPage = Number(searchParams.get('page')) || 1
+
     const allPages = generatePagination(currentPage, totalPages)
+
+    const createPageURL = (pageNumber: number | string) => {
+        const params = new URLSearchParams(searchParams)
+        params.set('page', pageNumber.toString())
+        return `${pathname}?${params.toString()}`
+    }
 
     return (
         <>
             <div className="inline-flex">
-                <PaginationArrow direction="left" href={''} isDisabled={currentPage <= 1} />
+                <PaginationArrow
+                    direction="left"
+                    href={createPageURL(currentPage - 1)}
+                    isDisabled={currentPage <= 1}
+                />
 
                 <div className="flex items-center -space-x-px">
                     {allPages.map((page, index) => {
@@ -26,7 +41,7 @@ export function Pagination({ totalPages }: { totalPages: number }) {
                         return (
                             <PaginationNumber
                                 key={page}
-                                href={''}
+                                href={createPageURL(page)}
                                 page={page}
                                 position={position}
                                 isActive={currentPage === page}
@@ -37,7 +52,7 @@ export function Pagination({ totalPages }: { totalPages: number }) {
 
                 <PaginationArrow
                     direction="right"
-                    href={''}
+                    href={createPageURL(currentPage + 1)}
                     isDisabled={currentPage >= totalPages}
                 />
             </div>

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useSearchParams, usePathname } from 'next/navigation'
+import { useQueryClient } from '@tanstack/react-query'
 
 import { IconProvider } from '@repo/ui/icons'
 import { CreateModal } from '@repo/ui/modal'
@@ -10,9 +11,14 @@ import { z } from '@repo/lib/index'
 import { trpc } from '@/trpc/trpc'
 
 export default function Header() {
+    const queryClient = useQueryClient()
     const searchParams = useSearchParams()
     const pathName = usePathname()
-    const mutation = trpc.createProjects.useMutation()
+    const mutation = trpc.createProjects.useMutation({
+        onSuccess: () => {
+            queryClient.invalidateQueries()
+        },
+    })
 
     const isModalVisible = searchParams.get('modal')
 
@@ -29,13 +35,16 @@ export default function Header() {
             <div className="self-start">
                 <Link
                     href={`${pathName}?modal=true`}
+                    shallow={true}
                     className="flex gap-2 rounded-md bg-brand-600 px-4 py-2 text-white"
                 >
                     <IconProvider name="Plus" size={24} className="w-5" />
                     New Project
                 </Link>
             </div>
-            {isModalVisible && <CreateModal onFormSubmit={handleFormSubmit} />}
+            {isModalVisible && (
+                <CreateModal onFormSubmit={handleFormSubmit} isLoading={mutation.isLoading} />
+            )}
         </div>
     )
 }

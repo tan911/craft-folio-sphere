@@ -1,9 +1,69 @@
-import { Switches, Search } from '@repo/ui/forms'
-import { Icon } from '@repo/ui/icons'
-import { data } from '@/lib/placholder-data'
-import { Pagination } from '@repo/ui/pagination'
+'use client'
 
-export default function Page() {
+import { useEffect, useState, type ChangeEvent } from 'react'
+import { useDebouncedCallback } from 'use-debounce'
+import { useSearchParams, usePathname, useRouter } from 'next/navigation'
+import { trpc } from '@/trpc/trpc'
+import { TBodySkeleton } from '@/components/skeleton/table.skeleton'
+import { Switches, Search } from '@repo/ui/forms'
+import { Pagination } from '@repo/ui/pagination'
+import TBody from '@/components/table/body.table'
+import THead from '@/components/table/head.table'
+
+type SearchParamsProps = {
+    searchParams?: {
+        query?: string
+        page?: string
+    }
+}
+
+export default function Page({ searchParams }: SearchParamsProps) {
+    const { data: projectResultList, isLoading } = trpc.getProjects.useQuery({
+        currentPage: Number(searchParams?.page) || 1,
+        itemsPerPage: 6,
+    })
+    const router = useRouter()
+    const searchParameter = useSearchParams()
+    const pathname = usePathname()
+    const [selectAll, setSelectAll] = useState(false)
+    const [resultData, setResultData] = useState(projectResultList?.data)
+
+    const handleAllSelect = (isAllItemChecked: boolean) => {
+        const updatedData = projectResultList?.data.map((item) => {
+            return {
+                ...item,
+                isChecked: isAllItemChecked,
+            }
+        })
+        setResultData(updatedData)
+        setSelectAll(isAllItemChecked)
+    }
+
+    const handleItemSelect = (id: number, event: ChangeEvent<HTMLInputElement>) => {
+        const updateData = resultData?.map((item) => {
+            if (item.id === id) {
+                return { ...item, isChecked: event.target.checked }
+            }
+            return item
+        })
+        setResultData(updateData)
+    }
+
+    const handleSearch = useDebouncedCallback((term: string) => {
+        const params = new URLSearchParams(searchParams)
+        params.set('page', '1')
+        if (term) {
+            params.set('query', term)
+        } else {
+            params.delete('query')
+        }
+        router.replace(`${pathname}?${params.toString()}`)
+    }, 300)
+
+    useEffect(() => {
+        setResultData(projectResultList?.data)
+    }, [projectResultList])
+
     return (
         <>
             <section className="mb-8 mt-2 flex h-[34rem] flex-col gap-4 md:my-2 md:h-44 md:flex-row md:items-center md:justify-between md:gap-10">
@@ -21,67 +81,22 @@ export default function Page() {
                         id="filter-search-bar"
                         label="Filter Bar"
                         type="text"
-                        placeholder="Search"
+                        placeholder="Search projects..."
+                        onSearch={handleSearch}
+                        value={searchParameter.get('query')?.toString()}
                     />
                 </div>
-                <div className="h-[34.25rem] w-full rounded-lg border border-primary-200 shadow-sm">
-                    <table className="min-w-full table-auto divide-y divide-primary-200 rounded-lg text-left font-normal">
-                        <thead>
-                            <tr>
-                                <th scope="col" className="h-11 pl-16 text-mobsm font-normal">
-                                    Project name
-                                </th>
-                                <th scope="col" className="h-11 px-4 text-mobsm font-normal">
-                                    Status
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="hidden h-11 px-4 text-mobsm font-normal md:table-cell"
-                                >
-                                    About
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="hidden h-11 px-4 text-mobsm font-normal md:table-cell"
-                                >
-                                    Last update
-                                </th>
-                                <th scope="col" className="sr-only">
-                                    Modify
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-primary-200">
-                            {data.project.map((item) => (
-                                <tr key={item.id} className="odd:bg-primary-100">
-                                    <td className="h-[4.5rem] pl-16">{item.name}</td>
-                                    <td className="h-[4.5rem] px-4">{item.status}</td>
-                                    <td className="hidden h-[4.5rem] px-4 md:table-cell">
-                                        {item.description}
-                                    </td>
-                                    <td className="hidden h-[4.5rem] px-4 md:table-cell">
-                                        {item.updatedAt}
-                                    </td>
-                                    <td className="flex hidden h-[4.5rem] w-[116px] flex-row justify-between gap-2 p-4 md:flex">
-                                        <button
-                                            aria-label="Delete"
-                                            className="modify-btn block rounded-md border border-transparent px-2 transition-all hover:border-error-600"
-                                        >
-                                            <Icon name="trash-2" size={24} className="trash-icon" />
-                                        </button>
-                                        <button
-                                            aria-label="Edit"
-                                            className="modify-btn block rounded-md border border-transparent px-2 transition-all hover:border-success-600 hover:bg-success-25"
-                                        >
-                                            <Icon name="pen" size={24} className="pen-icon" />
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
+                <div className="relative flex h-[34.25rem] w-full flex-col justify-between rounded-lg border border-primary-200 shadow-sm">
+                    <table className="min-w-full table-auto divide-primary-200 rounded-lg text-left font-normal">
+                        <THead onSelectAll={handleAllSelect} value={selectAll} />
+                        {isLoading ? (
+                            <TBodySkeleton rows={6} />
+                        ) : (
+                            <TBody data={resultData} onSelectOne={handleItemSelect} />
+                        )}
                     </table>
-                    <div className="mb-8 flex items-center justify-center md:my-2">
-                        <Pagination totalPages={5} />
+                    <div className="mb-8 flex items-center justify-center ">
+                        <Pagination totalPages={Math.ceil(Number(projectResultList?.total) / 6)} />
                     </div>
                 </div>
             </section>

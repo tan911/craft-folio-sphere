@@ -1,6 +1,6 @@
 'use client'
 
-import { Icon } from '../icons/index'
+import { IconProvider } from '../icons/index'
 
 type SearchProps = {
     type: string
@@ -8,12 +8,14 @@ type SearchProps = {
     label: string
     placeholder: string
     className?: string
+    value?: string
+    onSearch: (term: string) => void
 }
 
 export function Search(props: SearchProps) {
     return (
         <div className={`relative h-11 ${props.className}`}>
-            <form className="h-full">
+            <div className="h-full">
                 <label htmlFor={props.id} className="sr-only">
                     {props.label}
                 </label>
@@ -23,11 +25,14 @@ export function Search(props: SearchProps) {
                     id={props.id}
                     placeholder={props.placeholder}
                     className="h-full w-full rounded-md border border-primary-300 py-2 pl-9 pr-3"
+                    onChange={(e) => props.onSearch(e.target.value)}
+                    defaultValue={props.value}
                 />
-            </form>
-            <Icon
-                name="search"
+            </div>
+            <IconProvider
+                name="Search"
                 size={24}
+                fill="none"
                 className="absolute bottom-0 left-2.5 top-0 w-5 translate-y-1/2 text-primary-300"
             />
         </div>

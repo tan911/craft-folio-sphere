@@ -81,7 +81,7 @@ model About {
 model Work {
   id          Int      @id @default(autoincrement())
   user        User     @relation(fields: [workId], references: [id])
-  workId      String   @unique @map("work_id")
+  workId      String   @map("work_id")
   position    String   @db.VarChar(20)
   companyName String   @map("name_of_company") @db.VarChar(20)
   location    String   @db.VarChar(20)
@@ -93,7 +93,7 @@ model Work {
 model Project {
   id          Int      @id @default(autoincrement())
   user        User     @relation(fields: [projectId], references: [id])
-  projectId   String   @unique @map("project_id")
+  projectId   String   @map("project_id")
   name        String   @db.VarChar(50)
   status      Status   @default(Active)
   description String
